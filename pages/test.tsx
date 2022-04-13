@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
+import Link from 'next/link'
 
 import styles from '../styles/base.module.css'
 import { TextResponse } from '../components/TextResponse'
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
         This will one day contain a configurable survey. For now it renders the
         components and displays callback updates
       </h3>
+      <Link href="/">Simulate a page leave</Link>
       <div className={styles.columns}>
         <div className={styles.messageLog}>
           <h1>Message Log</h1>
@@ -26,10 +28,16 @@ const Home: NextPage = () => {
         </div>
         <div className={styles.questions}>
           <QuestionWrapper>
-            <TextResponse placeholder="q 1" />
+            <TextResponse
+              placeholder="q 1"
+              updateCallback={(update) => addMessage(`q1 updated: ${update}`)}
+            />
           </QuestionWrapper>
           <QuestionWrapper>
-            <TextResponse placeholder="q 2" />
+            <TextResponse
+              placeholder="q 2"
+              updateCallback={(update) => addMessage(`q2 updated: ${update}`)}
+            />
           </QuestionWrapper>
         </div>
       </div>

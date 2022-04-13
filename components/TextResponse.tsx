@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+// @ts-expect-error This package is typescripted, but not uploaded to npm correctly
+import { useDebounce } from 'use-lodash-debounce'
 
 import styles from '../styles/TextResponse.module.css'
 
@@ -8,11 +10,17 @@ type Props = {
 }
 const TextResponse = ({ placeholder, updateCallback }: Props) => {
   const [userText, updateUserText] = useState('')
-  useEffect(() => {
-    if (!updateCallback) return
-    // TODO: debounce
-    updateCallback(userText)
-  }, [updateCallback, userText])
+  const debouncedUserText = useDebounce(userText, 500)
+
+  useEffect(
+    () => {
+      if (!updateCallback) return
+      // TODO: debounce
+      updateCallback(debouncedUserText)
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [debouncedUserText]
+  )
 
   return (
     <textarea
