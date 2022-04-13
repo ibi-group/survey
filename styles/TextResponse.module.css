@@ -1,0 +1,23 @@
+.textbox {
+  background: #eaeaeacc;
+  border: none;
+  color: #333;
+  padding: 1em;
+  border-radius: 1em;
+  font-size: 2em;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  line-height: 1.5;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  border: solid 3px transparent;
+}
+.textbox:hover {
+  background: #dadadadd;
+}
+.textbox:focus {
+  background: #fafafadd;
+  border: 3px solid #333;
+  outline: none;
+}
