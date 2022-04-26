@@ -15,7 +15,6 @@ const TextResponse = ({ placeholder, updateCallback }: Props) => {
   useEffect(
     () => {
       if (!updateCallback) return
-      // TODO: debounce
       updateCallback(debouncedUserText)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
