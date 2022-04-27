@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import styles from '../styles/Slider.module.css'
+import styles from '../styles/SatisfactionSlider.module.css'
 
 import Smiley from './Smiley'
 
@@ -9,13 +9,15 @@ type Props = {
   max?: number
   min?: number
   step?: number
+  title?: string
   updateCallback?: (update: number) => void
 }
 const SatisfactionSlider = ({
-  initial,
-  max,
-  min,
+  initial = 6,
+  max = 10,
+  min = 0,
   step,
+  title,
   updateCallback
 }: Props) => {
   const [number, updateNumber] = useState(initial || 0)
@@ -31,9 +33,12 @@ const SatisfactionSlider = ({
     [number]
   )
 
+  const scaledNumber = (number - min) / (max - min)
+
   return (
-    <>
-      <Smiley percentage={number} />
+    <span className={styles.wrapper}>
+      {title && <h1>{title}</h1>}
+      <Smiley percentage={scaledNumber} />
       <input
         max={max}
         min={min}
@@ -42,7 +47,7 @@ const SatisfactionSlider = ({
         type="range"
         value={number}
       />
-    </>
+    </span>
   )
 }
 export { SatisfactionSlider }

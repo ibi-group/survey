@@ -1,23 +1,30 @@
-const Smiley = ({ percentage = 50 }) => {
-  // Avoid forbidden 0
-  if (percentage === 40) {
-    percentage = 42
-  }
+import styles from '../styles/SatisfactionSlider.module.css'
 
-  // 3 is low, 8 is high. 0 is forbidden
-  const calculatedTop = percentage / 20 + 3
+type Props = {
+  percentage: number
+}
 
-  return (
-    <svg height={100} viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
-      <g>
-        <g>
-          <circle cx="2" cy="2" r="1" />
-          <circle cx="8" cy="2" r="1" />
-          <path d={`M2,5 C2,${calculatedTop} 8,${calculatedTop} 8,5`} />
-        </g>
-      </g>
-    </svg>
+interface EmojiMap {
+  [key: string]: string
+}
+const EMOJI_MAP: EmojiMap = {
+  10: '☹️',
+  100: '😁',
+  20: '🙁',
+  30: '😕',
+  50: '😐',
+  60: '🙂',
+  70: '😊',
+  90: '😄'
+}
+
+const Smiley = ({ percentage }: Props) => {
+  const matchingEmoji = Object.keys(EMOJI_MAP).find(
+    (key) => parseInt(key) >= percentage * 100
   )
+  if (!matchingEmoji) return null
+
+  return <span className={styles.large}>{EMOJI_MAP[matchingEmoji]}</span>
 }
 
 export default Smiley
