@@ -24,7 +24,17 @@ const Wrapper = ({
 export const Default = () => (
   <Wrapper>
     <TextResponse
-      placeholder="Describe your favorite food here"
+      placeholder="Type here"
+      updateCallback={action('Text is updated')}
+    />
+  </Wrapper>
+)
+
+export const WithTitle = () => (
+  <Wrapper>
+    <TextResponse
+      placeholder="Pizza is delicious"
+      title="Describe your favorite food here"
       updateCallback={action('Text is updated')}
     />
   </Wrapper>
@@ -32,6 +42,6 @@ export const Default = () => (
 
 export const OnABackground = () => (
   <Wrapper style={{ backgroundColor: 'green' }}>
-    <TextResponse />
+    <TextResponse placeholder="Placeholder Text" />
   </Wrapper>
 )

@@ -6,9 +6,10 @@ import styles from '../styles/TextResponse.module.css'
 
 type Props = {
   placeholder?: string
+  title?: string
   updateCallback?: (update: string) => void
 }
-const TextResponse = ({ placeholder, updateCallback }: Props) => {
+const TextResponse = ({ placeholder, title, updateCallback }: Props) => {
   const [userText, updateUserText] = useState('')
   const debouncedUserText = useDebounce(userText, 500)
 
@@ -22,12 +23,15 @@ const TextResponse = ({ placeholder, updateCallback }: Props) => {
   )
 
   return (
-    <textarea
-      className={styles.textbox}
-      onChange={(e) => updateUserText(e.target.value)}
-      placeholder={placeholder}
-      value={userText}
-    />
+    <>
+      {title && <h1>{title}</h1>}
+      <textarea
+        className={styles.textbox}
+        onChange={(e) => updateUserText(e.target.value)}
+        placeholder={placeholder}
+        value={userText}
+      />
+    </>
   )
 }
 export { TextResponse }
