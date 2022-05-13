@@ -20,5 +20,7 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Lint code
         run: yarn lint
+      - name: Lint types
+        run: yarn tsc
       - name: Build example project
         run: yarn build
