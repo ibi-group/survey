@@ -37,11 +37,13 @@ const SatisfactionSlider = ({
 
   return (
     <span className={styles.wrapper}>
-      {title && <h1>{title}</h1>}
+      {title && <h3>{title}</h3>}
       <Smiley percentage={scaledNumber} />
+      <input name={title} type="hidden" value={scaledNumber} />
       <input
         max={max}
         min={min}
+        name={title}
         onChange={(e) => updateNumber(parseInt(e.target.value))}
         step={step}
         type="range"

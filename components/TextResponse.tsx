@@ -27,6 +27,7 @@ const TextResponse = ({ placeholder, title, updateCallback }: Props) => {
       {title && <h1>{title}</h1>}
       <textarea
         className={styles.textbox}
+        name={title}
         onChange={(e) => updateUserText(e.target.value)}
         placeholder={placeholder}
         value={userText}

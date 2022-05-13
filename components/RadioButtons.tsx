@@ -44,7 +44,7 @@ const RadioButtons = ({
               checked={index === selectedOption}
               className={styles.button}
               id={`${index}`}
-              name="radio"
+              name={title}
               type="radio"
               value={index}
             />

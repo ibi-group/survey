@@ -1,4 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Survey
+
+Contains components that make up a survey and a next app to combine those configurably and upload the results to AWS S3.
+
+## Exploring the components
+
+Storybook stories have been created for each of the survey components. To view these stories, run
+
+```bash
+yarn install
+yarn storybook
+```
 
 ## Getting Started
 
