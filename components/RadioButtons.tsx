@@ -30,8 +30,8 @@ const RadioButtons = ({
 
   return (
     <>
-      {title && <h1>{title}</h1>}
-      <form
+      {title && <h3>{title}</h3>}
+      <fieldset
         className={styles.container}
         onChange={
           (e) =>
@@ -52,7 +52,7 @@ const RadioButtons = ({
             <span className={styles.label}>{option}</span>
           </label>
         ))}
-      </form>
+      </fieldset>
     </>
   )
 }
