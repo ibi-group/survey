@@ -10,7 +10,7 @@
 .button {
   display: none;
 }
-.button ~ label {
+.button ~ .label {
   padding: 3em;
   color: #333;
   transition: all 0.1s ease-in-out;
@@ -19,7 +19,7 @@
   border: 5px solid #33333333;
 }
 
-.button:checked ~ label {
+.button:checked ~ .label {
   color: #000;
   border: 5px solid #333;
 }

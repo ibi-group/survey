@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable jsx-a11y/label-has-for */
+import React, { useEffect, useState } from 'react'
 
 import styles from '../styles/RadioButtons.module.css'
 
@@ -39,7 +40,7 @@ const RadioButtons = ({
         }
       >
         {options?.map((option, index) => (
-          <div key={index}>
+          <label key={index}>
             <input
               checked={index === selectedOption}
               className={styles.button}
@@ -48,8 +49,8 @@ const RadioButtons = ({
               type="radio"
               value={index}
             />
-            <label htmlFor={`${index}`}>{option}</label>
-          </div>
+            <span className={styles.label}>{option}</span>
+          </label>
         ))}
       </form>
     </>
