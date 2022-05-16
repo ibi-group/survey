@@ -23,7 +23,7 @@ const TextResponse = ({ placeholder, title, updateCallback }: Props) => {
   )
 
   return (
-    <>
+    <form>
       {title && <h1>{title}</h1>}
       <textarea
         className={styles.textbox}
@@ -32,7 +32,7 @@ const TextResponse = ({ placeholder, title, updateCallback }: Props) => {
         placeholder={placeholder}
         value={userText}
       />
-    </>
+    </form>
   )
 }
 export { TextResponse }

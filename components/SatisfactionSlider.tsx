@@ -36,7 +36,7 @@ const SatisfactionSlider = ({
   const scaledNumber = (number - min) / (max - min)
 
   return (
-    <span className={styles.wrapper}>
+    <form className={styles.wrapper}>
       {title && <h3>{title}</h3>}
       <Smiley percentage={scaledNumber} />
       <input name={title} type="hidden" value={scaledNumber} />
@@ -49,7 +49,7 @@ const SatisfactionSlider = ({
         type="range"
         value={number}
       />
-    </span>
+    </form>
   )
 }
 export { SatisfactionSlider }
