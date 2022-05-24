@@ -1,0 +1,22 @@
+.home {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding: 50px;
+  width: 100vw;
+}
+.columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+.messageLog {
+}
+.questions {
+  display: flex;
+  grid-gap: 20px;
+  flex-direction: column;
+}

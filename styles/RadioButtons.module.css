@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  max-width: 800px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+  font-size: 28px;
+}
+
+.button {
+  display: none;
+}
+.button ~ .label {
+  padding: 3em;
+  color: #333;
+  transition: all 0.1s ease-in-out;
+  display: block;
+  border-radius: 25em;
+  border: 5px solid #33333333;
+}
+
+.button:checked ~ .label {
+  color: #000;
+  border: 5px solid #333;
+}
