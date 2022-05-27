@@ -4,12 +4,16 @@ import { useDebounce } from 'use-lodash-debounce'
 
 import styles from '../styles/TextResponse.module.css'
 
-type Props = {
+export type TextResponseProps = {
   placeholder?: string
   title?: string
   updateCallback?: (update: string) => void
 }
-const TextResponse = ({ placeholder, title, updateCallback }: Props) => {
+const TextResponse = ({
+  placeholder,
+  title,
+  updateCallback
+}: TextResponseProps) => {
   const [userText, updateUserText] = useState('')
   const debouncedUserText = useDebounce(userText, 500)
 

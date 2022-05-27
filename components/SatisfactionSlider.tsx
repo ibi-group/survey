@@ -4,7 +4,7 @@ import styles from '../styles/SatisfactionSlider.module.css'
 
 import Smiley from './Smiley'
 
-type Props = {
+export type SatisfactionSliderProps = {
   initial?: number
   max?: number
   min?: number
@@ -19,7 +19,7 @@ const SatisfactionSlider = ({
   step,
   title,
   updateCallback
-}: Props) => {
+}: SatisfactionSliderProps) => {
   const [number, updateNumber] = useState(initial || 0)
 
   useEffect(
@@ -36,20 +36,22 @@ const SatisfactionSlider = ({
   const scaledNumber = (number - min) / (max - min)
 
   return (
-    <fieldset className={styles.wrapper}>
+    <>
       {title && <h3>{title}</h3>}
-      <Smiley percentage={scaledNumber} />
-      <input name={title} type="hidden" value={scaledNumber} />
-      <input
-        max={max}
-        min={min}
-        name={title}
-        onChange={(e) => updateNumber(parseInt(e.target.value))}
-        step={step}
-        type="range"
-        value={number}
-      />
-    </fieldset>
+      <fieldset className={styles.wrapper}>
+        <Smiley percentage={scaledNumber} />
+        <input name={title} type="hidden" value={scaledNumber} />
+        <input
+          max={max}
+          min={min}
+          name={title}
+          onChange={(e) => updateNumber(parseInt(e.target.value))}
+          step={step}
+          type="range"
+          value={number}
+        />
+      </fieldset>
+    </>
   )
 }
 export { SatisfactionSlider }

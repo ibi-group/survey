@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import styles from '../styles/RadioButtons.module.css'
 
-type Props = {
+export type RadioButtonProps = {
   defaultOptionIndex?: number
   options: string[]
   title?: string
@@ -14,7 +14,7 @@ const RadioButtons = ({
   options,
   title,
   updateCallback
-}: Props) => {
+}: RadioButtonProps) => {
   const [selectedOption, updateSelectedOption] = useState(
     defaultOptionIndex || 0
   )

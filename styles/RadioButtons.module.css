@@ -1,10 +1,11 @@
 .container {
   display: flex;
-  max-width: 800px;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
-  font-size: 28px;
+  font-size: 20px;
+  border: none;
+  overflow: scroll;
 }
 
 .button {
