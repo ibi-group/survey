@@ -98,15 +98,23 @@ const renderQuestion = (
   }
 }
 
+const sessionUuid = v4()
+
 const Home: NextPage = () => {
   const [activeQuestion, setActiveQuestion] = useState(0)
-
-  const sessionUuid = v4()
 
   const updateHandler = (update: unknown) => {
     console.log(
       `update! session ${sessionUuid}. activeQuestion ${activeQuestion}. value ${update}`
     )
+    fetch(`/api/recordUpdate`, {
+      body: JSON.stringify({
+        question: activeQuestion,
+        sessionUuid,
+        value: update
+      }),
+      method: 'POST'
+    })
   }
 
   const surveyOver = activeQuestion >= questions.length
