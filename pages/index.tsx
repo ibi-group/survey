@@ -4,36 +4,7 @@ import { v4 } from 'uuid'
 
 import { renderQuestion } from '../components/util/questionRenderer'
 import styles from '../styles/base.module.css'
-
-// TODO: import from file
-const questions: Question[] = [
-  {
-    title: 'Welcome message',
-    type: 'info'
-  },
-  { title: 'So what do you think of this survey?', type: 'textarea' },
-  {
-    initial: 0,
-    title: "What's your face when you see this slider?",
-    type: 'satisfaction'
-  },
-  {
-    options: [
-      'Once in my lifetime',
-      'Once a week',
-      'Once I find the time',
-      'Once I get my act together',
-      'Once upon a time'
-    ],
-    title: 'How often do you see yourself taking this awesome survey?',
-    type: 'radio'
-  },
-  {
-    placeholder: 'Talk about how sad you are here...',
-    title: 'The survey is almost over',
-    type: 'textarea'
-  }
-]
+import { questions } from '../config.json'
 
 const sessionUuid = v4()
 
