@@ -2,18 +2,8 @@ import type { NextPage } from 'next'
 import { useState } from 'react'
 import { v4 } from 'uuid'
 
-import { RadioButtonProps, RadioButtons } from '../components/RadioButtons'
-import {
-  SatisfactionSlider,
-  SatisfactionSliderProps
-} from '../components/SatisfactionSlider'
-import { TextResponse, TextResponseProps } from '../components/TextResponse'
+import { renderQuestion } from '../components/util/questionRenderer'
 import styles from '../styles/base.module.css'
-
-type Question = {
-  title?: string
-  type: string
-} & (RadioButtonProps | SatisfactionSliderProps | TextResponseProps)
 
 // TODO: import from file
 const questions: Question[] = [
@@ -44,59 +34,6 @@ const questions: Question[] = [
     type: 'textarea'
   }
 ]
-
-const renderQuestion = (
-  question: Question,
-  updateCallback?: (update: unknown) => void
-) => {
-  const { title, type } = question
-
-  const failure = <h2>{type} was misconfigured.</h2>
-
-  switch (type) {
-    case 'info':
-      return <h1>{title}</h1>
-    case 'radio':
-      if (!('options' in question)) return failure
-      return (
-        <RadioButtons
-          options={question.options}
-          title={title}
-          updateCallback={updateCallback}
-        />
-      )
-    case 'satisfaction':
-      return (
-        <SatisfactionSlider
-          initial={'initial' in question ? question.initial : undefined}
-          max={'max' in question ? question.max : undefined}
-          min={'min' in question ? question.min : undefined}
-          step={'step' in question ? question.step : undefined}
-          title={title}
-          updateCallback={updateCallback}
-        />
-      )
-    case 'textarea':
-      return (
-        <TextResponse
-          placeholder={
-            'placeholder' in question ? question.placeholder : undefined
-          }
-          title={title}
-          updateCallback={updateCallback}
-        />
-      )
-    default:
-      console.warn(`Invalid question type ${type}`)
-      return (
-        <h2>
-          The configuration contains an invalid question type{' '}
-          <pre style={{ display: 'inline' }}>{type || 'undefined'}</pre>. See
-          console for details.
-        </h2>
-      )
-  }
-}
 
 const sessionUuid = v4()
 
