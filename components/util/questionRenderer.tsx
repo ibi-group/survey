@@ -5,7 +5,7 @@ import {
 } from '../SatisfactionSlider'
 import { TextResponse, TextResponseProps } from '../TextResponse'
 
-type Question = {
+export type Question = {
   title?: string
   type: string
 } & (RadioButtonProps | SatisfactionSliderProps | TextResponseProps)

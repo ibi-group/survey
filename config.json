@@ -1,8 +1,15 @@
 {
   "questions": [
     {
-      "title": "Welcome message",
-      "type": "info"
+      "type": "info",
+      "i18n": {
+        "en-US": {
+          "title": "hi there"
+        },
+        "fr": {
+          "title": "bonjour"
+        }
+      }
     },
     { "title": "So what do you think of this survey?", "type": "textarea" },
     {
@@ -26,5 +33,23 @@
       "title": "The survey is almost over",
       "type": "textarea"
     }
-  ]
+  ],
+  "i18n": {
+    "en-US": {
+      "index": {
+        "next": "Next 〉",
+        "prev": "〈 Previous",
+        "completion": "Thanks. Your response has been submitted.",
+        "completionSecondary": ""
+      }
+    },
+    "fr": {
+      "index": {
+        "next": "a droit",
+        "prev": "a gauche",
+        "completion": "Thanks. Your response has been submitted.",
+        "completionSecondary": ""
+      }
+    }
+  }
 }
