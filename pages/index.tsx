@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 
 import { Question, renderQuestion } from '../components/util/questionRenderer'
 import styles from '../styles/base.module.css'
-import config from '../config.json'
+import config from '../config.yaml'
 
 const sessionUuid = v4()
 
@@ -45,6 +45,9 @@ const Home: NextPage = ({ questions }: Props) => {
     <main className={styles.wrapper}>
       {/* dynamically imported content */}
       {questions.map((question, index) => {
+        if (question.i18n) {
+          question.title = t(`question${index}.title`)
+        }
         return (
           <form
             className={styles.question}
@@ -86,16 +89,31 @@ const Home: NextPage = ({ questions }: Props) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const messages = config.i18n[context.locale as keyof typeof config.i18n]
-  const questionMessages = config.questions.reduce((prev, cur, index) => {
-    if (cur.i18n) {
-      // TODO: merge in keys and give them unique titles, then set that title as the title object for the question
-    }
-  }, {})
+  const questionMessages: Record<
+    string,
+    Record<string, string | string[] | undefined>
+  > = {}
+  const localizedQuestions = config.questions.map(
+    (question: Question, index: number) => {
+      if (question.i18n) {
+        const translations = question.i18n[context.locale as string]
+        questionMessages[`question${index}`] = translations
+
+        // TODO: this is a bit of a hack to internationalize the options
+        if (translations.options) {
+          return { ...question, options: translations.options }
+        }
+      }
+
+      return question
+    },
+    {}
+  )
 
   return {
     props: {
-      messages,
-      questions: config.questions
+      messages: { ...messages, ...questionMessages },
+      questions: localizedQuestions
     }
   }
 }

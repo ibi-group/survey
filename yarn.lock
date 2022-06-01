@@ -7464,6 +7464,15 @@ js-string-escape@^1.0.1:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
+js-yaml-loader@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/js-yaml-loader/-/js-yaml-loader-1.2.2.tgz#2c15f93915617acd19676d648945fa3003f8629b"
+  integrity sha512-H+NeuNrG6uOs/WMjna2SjkaCw13rMWiT/D7l9+9x5n8aq88BDsh2sRmdfxckWPIHtViYHWRG6XiCKYvS1dfyLg==
+  dependencies:
+    js-yaml "^3.13.1"
+    loader-utils "^1.2.3"
+    un-eval "^1.2.0"
+
 js-yaml@^3.13.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
@@ -8248,6 +8257,13 @@ next-intl@^2.7.4:
   integrity sha512-fspmOzhInd/m+cV3Qj6FzjfDIjEtNTS6Vi4Xv+/59ReZvcW9uGmn/py0NkltQnf5Oefl0RUZGdjbd+t6+G+PMw==
   dependencies:
     use-intl "^2.7.4"
+
+next-plugin-yaml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/next-plugin-yaml/-/next-plugin-yaml-1.0.1.tgz#90e96637dfa445806fc44d1df3506c0f1446246a"
+  integrity sha512-k13wbpN33wTgrgWUBiXPtObXO94JOEiwvYKJ3X0JrBz2yaW24EfNaVqHwA0dwhsn9PyPIKhPhgsu3bhJsNs+cQ==
+  dependencies:
+    js-yaml-loader "^1.2.2"
 
 next@12.1.4:
   version "12.1.4"
@@ -10835,6 +10851,11 @@ uglify-js@^3.1.4:
   version "3.15.3"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.15.3.tgz#9aa82ca22419ba4c0137642ba0df800cb06e0471"
   integrity sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==
+
+un-eval@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/un-eval/-/un-eval-1.2.0.tgz#22a95c650334d59d21697efae32612218ecad65f"
+  integrity sha512-Wlj/pum6dQtGTPD/lclDtoVPkSfpjPfy1dwnnKw/sZP5DpBH9fLhBgQfsqNhe5/gS1D+vkZUuB771NRMUPA5CA==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"

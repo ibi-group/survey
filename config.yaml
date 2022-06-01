@@ -1,0 +1,48 @@
+questions: 
+  - 
+    type: "info"
+    i18n: 
+      en-US: 
+        title: "hi there"
+      fr: 
+        title: "bonjour"
+  - 
+    type: "textarea"
+    title: "So what do you think of this survey?"
+  - 
+    type: "satisfaction"
+    initial: 0
+    title: "What's your face when you see this slider?"
+  - 
+    type: "radio"
+    i18n: 
+      en-US: 
+        title: "How often do you see yourself taking this awesome survey?"
+        options: 
+          - "Once in my lifetime"
+          - "Once a week"
+          - "Once I find the time"
+          - "Once I get my act together"
+          - "Once upon a time"
+      fr: 
+        title: "test french string"
+        options: 
+          - "french french french"
+  - 
+    type: "textarea"
+    placeholder: "Talk about how sad you are here..."
+    title: "The survey is almost over"
+i18n: 
+  en-US: 
+    index: 
+      next: "Next 〉"
+      prev: "〈 Previous"
+      completion: "Thanks. Your response has been submitted."
+      completionSecondary: ""
+  fr: 
+    index: 
+      next: "a droit"
+      prev: "a gauche"
+      completion: "Thanks. Your response has been submitted."
+      completionSecondary: "This is french."
+

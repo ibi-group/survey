@@ -6,6 +6,8 @@ import {
 import { TextResponse, TextResponseProps } from '../TextResponse'
 
 export type Question = {
+  // TODO: superior type
+  i18n?: Record<string, any>
   title?: string
   type: string
 } & (RadioButtonProps | SatisfactionSliderProps | TextResponseProps)
