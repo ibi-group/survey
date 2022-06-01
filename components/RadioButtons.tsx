@@ -42,10 +42,11 @@ const RadioButtons = ({
         {options?.map((option, index) => (
           <label key={index}>
             <input
-              checked={index === selectedOption}
               className={styles.button}
+              defaultChecked={index === selectedOption}
               id={`${index}`}
               name={title}
+              tabIndex={index}
               type="radio"
               value={index}
             />
