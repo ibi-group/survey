@@ -28,3 +28,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 To see the localization support, append a language code at the end of the URL (for example, [http://localhost:3000/fr](http://localhost:3000/fr) will render French strings). The system will attempt to map that key to languages defined in the `next.config.js`. Language strings are stored in `config.yaml`.
+
+### How to get the S3 upload to work
+
+An `env.example` file is provided. By placing AWS credentials and a bucket name in the corresponding slots, next will pick up on them and automatically upload results into the specified bucket.
