@@ -99,9 +99,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
         const translations = question.i18n[context.locale as string]
         questionMessages[`question${index}`] = translations
 
-        // TODO: this is a bit of a hack to internationalize the options
-        if (translations.options) {
+        // TODO: this is a bit of a hack to internationalize the some extra fields
+        if (translations?.options) {
           return { ...question, options: translations.options }
+        }
+        if (translations?.placeholder) {
+          return { ...question, placeholder: translations.placeholder }
         }
       }
 

@@ -10,14 +10,12 @@ export type RadioButtonProps = {
   updateCallback?: (update: number) => void
 }
 const RadioButtons = ({
-  defaultOptionIndex,
+  defaultOptionIndex = 0,
   options,
   title,
   updateCallback
 }: RadioButtonProps) => {
-  const [selectedOption, updateSelectedOption] = useState(
-    defaultOptionIndex || 0
-  )
+  const [selectedOption, updateSelectedOption] = useState(defaultOptionIndex)
 
   useEffect(
     () => {
