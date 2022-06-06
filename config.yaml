@@ -65,16 +65,22 @@ i18n:
       prev: "〈 Previous"
       completion: "Thanks. Your response has been submitted."
       completionSecondary: ""
+    TextResponse:
+      enterText: "Enter text..."
   fr: 
     index: 
       next: "Suivant"
       prev: "Précédent"
       completion: "Votre réponse a été reçue."
       completionSecondary: "This is French."
+    TextResponse:
+      enterText: "Entrez du texte..."
   de-DE:
     index:
       next: "Weiter"
       prev: "Zurück"
       completion: "Danke! Deine Antworten wurden gespeichert"
       completionSecondary: "Sie lesen Deutsch"
+    TextResponse:
+      enterText: "Text eingeben..."
 

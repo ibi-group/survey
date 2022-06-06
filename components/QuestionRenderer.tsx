@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl'
+
 import { RadioButtonProps, RadioButtons } from './RadioButtons'
 import {
   SatisfactionSlider,
@@ -19,6 +21,8 @@ const QuestionRenderer = ({
   question: Question
   updateCallback?: (update: unknown) => void
 }) => {
+  const t = useTranslations()
+
   const { title, type } = question
 
   const failure = (
@@ -55,7 +59,9 @@ const QuestionRenderer = ({
       return (
         <TextResponse
           placeholder={
-            'placeholder' in question ? question.placeholder : undefined
+            'placeholder' in question
+              ? question.placeholder
+              : t('TextResponse.enterText')
           }
           title={title}
           updateCallback={updateCallback}

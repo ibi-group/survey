@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { v4 } from 'uuid'
 import { useTranslations } from 'next-intl'
 import clone from 'lodash.clone'
+import { update } from 'lodash'
 
 import { Question, QuestionRenderer } from '../components/QuestionRenderer'
 import styles from '../styles/base.module.css'
@@ -102,15 +103,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
         const translations = question.i18n[context.locale as string]
         questionMessages[`question${index}`] = translations
 
-        // TODO: this is a bit of a hack to internationalize the some extra fields
+        // NOTE: this doesn't use the internationalization library, but achieves the same outcome
         updatedQuestion.title = translations.title
 
         if (translations?.options) {
-          updatedQuestion = { ...question, options: translations.options }
+          updatedQuestion = {
+            ...updatedQuestion,
+            options: translations.options
+          }
         }
         if (translations?.placeholder) {
           updatedQuestion = {
-            ...question,
+            ...updatedQuestion,
             placeholder: translations.placeholder
           }
         }

@@ -3,10 +3,10 @@
 }
 
 .wrapper {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  border: none;
+  display: flex;
   flex-direction: column;
   gap: 10px;
-  border: none;
+  justify-content: center;
 }
