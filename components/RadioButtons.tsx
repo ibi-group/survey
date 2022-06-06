@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { useEffect, useState } from 'react'
+import { v4 } from 'uuid'
 
 import styles from '../styles/RadioButtons.module.css'
 
@@ -26,6 +27,8 @@ const RadioButtons = ({
     [selectedOption]
   )
 
+  const uuid = v4()
+
   return (
     <>
       {title && <h3>{title}</h3>}
@@ -43,7 +46,7 @@ const RadioButtons = ({
               className={styles.button}
               defaultChecked={index === selectedOption}
               id={`${index}`}
-              name={title}
+              name={uuid}
               tabIndex={index}
               type="radio"
               value={index}

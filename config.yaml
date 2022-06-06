@@ -19,9 +19,9 @@ questions:
     # This question type provides a slider and a corresponding emoji-based
     # satisfaction display
     type: "satisfaction"
-    initial: 0
-    # min, max, and step are supported and map directly onto the HTML range input
+    # initial, min, max, and step are supported and map directly onto the HTML range input
     # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
+    initial: 0
     title: "What's your face when you see this slider?"
   - 
     # This question type renders multiple options the user can select between
@@ -46,7 +46,7 @@ questions:
           - "option 4"
           - "option 5"
       de-DE:
-        title: "Deutscher text"
+        title: "Deutscher Text"
         options:
           - "option 1"
           - "this is an example of making a mistake and mismatching the number of options in each language. Things will render properly, but users of this langauge will not be able to select all options!"
@@ -67,14 +67,14 @@ i18n:
       completionSecondary: ""
   fr: 
     index: 
-      next: "a droit"
-      prev: "a gauche"
-      completion: "Thanks. Your response has been submitted."
-      completionSecondary: "This is french."
+      next: "Suivant"
+      prev: "Précédent"
+      completion: "Votre réponse a été reçue."
+      completionSecondary: "This is French."
   de-DE:
     index:
       next: "Weiter"
-      prev: "Züruck"
+      prev: "Zurück"
       completion: "Danke! Deine Antworten wurden gespeichert"
       completionSecondary: "Sie lesen Deutsch"
 

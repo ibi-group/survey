@@ -2,8 +2,9 @@ import type { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
 import { v4 } from 'uuid'
 import { useTranslations } from 'next-intl'
+import clone from 'lodash.clone'
 
-import { Question, renderQuestion } from '../components/util/questionRenderer'
+import { Question, QuestionRenderer } from '../components/QuestionRenderer'
 import styles from '../styles/base.module.css'
 import config from '../config.yaml'
 
@@ -45,9 +46,6 @@ const Home: NextPage = ({ questions }: Props) => {
     <main className={styles.wrapper}>
       {/* dynamically imported content */}
       {questions.map((question, index) => {
-        if (question.i18n) {
-          question.title = t(`question${index}.title`)
-        }
         return (
           <form
             className={styles.question}
@@ -57,13 +55,16 @@ const Home: NextPage = ({ questions }: Props) => {
               display: index === activeQuestion ? 'inherit' : 'none'
             }}
           >
-            {renderQuestion(question, (update: unknown) =>
-              activeQuestion === index
-                ? updateHandler(update)
-                : console.log(
-                    'Swallowing invalid callback update provided by inactive question'
-                  )
-            )}
+            <QuestionRenderer
+              question={question}
+              updateCallback={(update: unknown) => {
+                return activeQuestion === index
+                  ? updateHandler(update)
+                  : console.log(
+                      'Swallowing invalid callback update provided by inactive question'
+                    )
+              }}
+            />
           </form>
         )
       })}
@@ -95,20 +96,27 @@ export const getStaticProps: GetStaticProps = async (context) => {
   > = {}
   const localizedQuestions = config.questions.map(
     (question: Question, index: number) => {
+      let updatedQuestion = clone(question)
+
       if (question.i18n) {
         const translations = question.i18n[context.locale as string]
         questionMessages[`question${index}`] = translations
 
         // TODO: this is a bit of a hack to internationalize the some extra fields
+        updatedQuestion.title = translations.title
+
         if (translations?.options) {
-          return { ...question, options: translations.options }
+          updatedQuestion = { ...question, options: translations.options }
         }
         if (translations?.placeholder) {
-          return { ...question, placeholder: translations.placeholder }
+          updatedQuestion = {
+            ...question,
+            placeholder: translations.placeholder
+          }
         }
       }
 
-      return question
+      return updatedQuestion
     },
     {}
   )
