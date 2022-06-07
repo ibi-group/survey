@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 // @ts-expect-error This package is typescripted, but not uploaded to npm correctly
 import { useDebounce } from 'use-lodash-debounce'
 
-import styles, { textbox } from '../styles/TextResponse.module.css'
+import styles from '../styles/TextResponse.module.css'
 
 export type TextResponseProps = {
   placeholder?: string
@@ -16,7 +16,6 @@ const TextResponse = ({
 }: TextResponseProps) => {
   const [userText, updateUserText] = useState('')
   const debouncedUserText = useDebounce(userText, 500)
-  const textboxRef = useRef(null)
 
   useEffect(
     () => {
