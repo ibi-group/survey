@@ -8,8 +8,7 @@ import {
 import { TextResponse, TextResponseProps } from './TextResponse'
 
 export type Question = {
-  // TODO: superior type. Needs to allow any type of question
-  i18n?: Record<string, any>
+  i18n?: IntlMessages & { options: Record<string, string> }
   title?: string
   type: string
 } & (RadioButtonProps | SatisfactionSliderProps | TextResponseProps)
@@ -31,6 +30,9 @@ const QuestionRenderer = ({
       <p>{type} was misconfigured.</p>
     </>
   )
+
+  // TODO: move title renderingn to this component?
+  // Only if there is a way to make it stable across all components
 
   switch (type) {
     case 'info':
@@ -81,4 +83,4 @@ const QuestionRenderer = ({
   }
 }
 
-export { QuestionRenderer }
+export default QuestionRenderer

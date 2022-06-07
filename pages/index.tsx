@@ -2,10 +2,9 @@ import type { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
 import { v4 } from 'uuid'
 import { useTranslations } from 'next-intl'
-import clone from 'lodash.clone'
-import { update } from 'lodash'
+import { clone } from 'lodash'
 
-import { Question, QuestionRenderer } from '../components/QuestionRenderer'
+import QuestionRenderer, { Question } from '../components/QuestionRenderer'
 import styles from '../styles/base.module.css'
 import config from '../config.yaml'
 

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 // @ts-expect-error This package is typescripted, but not uploaded to npm correctly
 import { useDebounce } from 'use-lodash-debounce'
 
-import styles from '../styles/TextResponse.module.css'
+import styles, { textbox } from '../styles/TextResponse.module.css'
 
 export type TextResponseProps = {
   placeholder?: string
@@ -16,6 +16,7 @@ const TextResponse = ({
 }: TextResponseProps) => {
   const [userText, updateUserText] = useState('')
   const debouncedUserText = useDebounce(userText, 500)
+  const textboxRef = useRef(null)
 
   useEffect(
     () => {
@@ -28,12 +29,23 @@ const TextResponse = ({
 
   return (
     <>
-      {title && <h3>{title}</h3>}
+      {title && (
+        <h3>
+          <label htmlFor={title}>{title}</label>
+        </h3>
+      )}
       <textarea
         className={styles.textbox}
+        id={title}
         name={title}
         onChange={(e) => updateUserText(e.target.value)}
         placeholder={placeholder}
+        // Focus the textarea on render
+        ref={(textboxRef) => {
+          if (textboxRef) {
+            textboxRef.focus()
+          }
+        }}
         value={userText}
       />
     </>
