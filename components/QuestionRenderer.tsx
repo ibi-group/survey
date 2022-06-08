@@ -31,7 +31,7 @@ const QuestionRenderer = ({
     </>
   )
 
-  // TODO: move title renderingn to this component?
+  // TODO: move title rendering to this component?
   // Only if there is a way to make it stable across all components
 
   switch (type) {

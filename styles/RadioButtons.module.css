@@ -15,7 +15,8 @@
 
 .button {
   width: 0;
-  visibility: hidden;
+  height: 0;
+  appearance: none;
 }
 .button ~ .label {
   padding: 3em;
