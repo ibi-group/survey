@@ -28,3 +28,6 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 To see the localization support, append a language code at the end of the URL (for example, [http://localhost:3000/fr](http://localhost:3000/fr) will render French strings). The system will attempt to map that key to languages defined in the `next.config.js`. Language strings are stored in `config.yaml`.
+
+#### Note about `yarn start`
+`yarn start` will only serve what has been built by `yarn build`. For active development, `yarn dev` is recommended.

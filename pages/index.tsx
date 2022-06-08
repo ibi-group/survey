@@ -39,6 +39,7 @@ const Home: NextPage = ({ questions }: Props) => {
 
   const surveyOver = activeQuestion >= questions.length
 
+  // TODO: add a wrapper here to blur focus when changing questions
   const prevQuestion = () => setActiveQuestion(activeQuestion - 1)
   const nextQuestion = () => setActiveQuestion(activeQuestion + 1)
 

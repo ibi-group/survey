@@ -13,10 +13,13 @@
   display: none; /* Safari and Chrome */
 }
 
-.button {
+.button,
+.button:focus {
   width: 0;
   height: 0;
-  appearance: none;
+
+  /* on chrome the width/height are fine */
+  -moz-appearance: none;
 }
 .button ~ .label {
   padding: 3em;
