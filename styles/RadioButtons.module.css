@@ -21,6 +21,10 @@
   /* on chrome the width/height are fine */
   -moz-appearance: none;
 }
+.button:focus ~ .label {
+  border-style: dashed !important;
+}
+
 .button ~ .label {
   padding: 3em;
   color: #333;
