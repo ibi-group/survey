@@ -1,23 +1,22 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { useEffect, useState } from 'react'
+import { v4 } from 'uuid'
 
 import styles from '../styles/RadioButtons.module.css'
 
-type Props = {
+export type RadioButtonProps = {
   defaultOptionIndex?: number
   options: string[]
   title?: string
   updateCallback?: (update: number) => void
 }
 const RadioButtons = ({
-  defaultOptionIndex,
+  defaultOptionIndex = 0,
   options,
   title,
   updateCallback
-}: Props) => {
-  const [selectedOption, updateSelectedOption] = useState(
-    defaultOptionIndex || 0
-  )
+}: RadioButtonProps) => {
+  const [selectedOption, updateSelectedOption] = useState(defaultOptionIndex)
 
   useEffect(
     () => {
@@ -27,6 +26,8 @@ const RadioButtons = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedOption]
   )
+
+  const uuid = v4()
 
   return (
     <>
@@ -42,10 +43,11 @@ const RadioButtons = ({
         {options?.map((option, index) => (
           <label key={index}>
             <input
-              checked={index === selectedOption}
               className={styles.button}
+              defaultChecked={index === selectedOption}
               id={`${index}`}
-              name={title}
+              name={uuid}
+              tabIndex={index}
               type="radio"
               value={index}
             />

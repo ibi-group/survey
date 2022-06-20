@@ -1,22 +1,38 @@
-.home {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 90vh 10vh;
   height: 100vh;
-  justify-content: center;
-  padding: 50px;
   width: 100vw;
 }
-.columns {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
+
+.question {
+  align-content: center;
+  display: inherit;
+  justify-content: center;
+  padding: 1em;
 }
-.messageLog {
+
+.buttons {
+  display: fixed;
+  width: 100vw;
 }
-.questions {
-  display: flex;
-  grid-gap: 20px;
-  flex-direction: column;
+.buttons button {
+  height: 100%;
+  width: 50vw;
+
+  background: #3333330a;
+  border: 0px solid #333;
+
+  transition: all 0.1s ease-in-out;
+}
+.buttons button:not(:disabled):hover {
+  background: #3333331f;
+}
+.buttons button:not(:disabled):active {
+  background: #3333332f;
+}
+.buttons button:disabled {
+  background: #33333303;
+  opacity: 0.5;
 }

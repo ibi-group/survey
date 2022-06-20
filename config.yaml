@@ -1,0 +1,86 @@
+questions: 
+  - 
+    # This question type will only display a title
+    type: "info"
+    # Internationalization is supported, but optional!
+    i18n: 
+      en-US: 
+        title: "Welcome"
+      fr: 
+        title: "Bonjour"
+      de-DE:
+        title: "Hallo"
+  - 
+    # This question type provides a textbox
+    type: "textarea"
+    # This is an example of a non-internationalized question
+    title: "What do you think of this survey?"
+  - 
+    # This question type provides a slider and a corresponding emoji-based
+    # satisfaction display
+    type: "satisfaction"
+    # initial, min, max, and step are supported and map directly onto the HTML range input
+    # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
+    initial: 0
+    title: "What's your face when you see this slider?"
+  - 
+    # This question type renders multiple options the user can select between
+    type: "radio"
+    i18n: 
+      en-US: 
+        title: "How often do you see yourself taking this awesome survey?"
+        # This question type can also be internationalized!
+        options: 
+          - "Once in my lifetime"
+          - "Once a week"
+          - "Once I find the time"
+          - "Once I get my act together"
+          - "Once upon a time"
+      fr: 
+        title: "test french string"
+        # Careful: it's easy to include the wrong number of strings!
+        options: 
+          - "option 1"
+          - "option 2"
+          - "option 3"
+          - "option 4"
+          - "option 5"
+      de-DE:
+        title: "Deutscher Text"
+        options:
+          - "option 1"
+          - "this is an example of making a mistake and mismatching the number of options in each language. Things will render properly, but users of this langauge will not be able to select all options!"
+  - 
+    # This is an example of a textarea question with placeholder content
+    type: "textarea"
+    placeholder: "Talk about how sad you are here..."
+    title: "The survey is almost over"
+
+# This section of the config contains internationalization strings for 
+# the non-question parts of the UI
+i18n: 
+  en-US: 
+    index: 
+      next: "Next 〉"
+      prev: "〈 Previous"
+      completion: "Thanks. Your response has been submitted."
+      completionSecondary: ""
+    TextResponse:
+      enterText: "Enter text..."
+  fr: 
+    index: 
+      next: "Suivant"
+      prev: "Précédent"
+      completion: "Votre réponse a été reçue."
+      completionSecondary: "This is French."
+    TextResponse:
+      enterText: "Entrez du texte..."
+  de-DE:
+    index:
+      next: "Weiter"
+      prev: "Zurück"
+      completion: "Danke! Deine Antworten wurden gespeichert"
+      completionSecondary: "Sie lesen Deutsch"
+    TextResponse:
+      enterText: "Text eingeben..."
+
