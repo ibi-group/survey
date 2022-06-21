@@ -2,6 +2,7 @@ import type { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
 import { v4 } from 'uuid'
 import { useTranslations } from 'next-intl'
+import { useSocket, useSocketEvent } from 'socket.io-react-hook'
 
 import { Question, renderQuestion } from '../components/util/questionRenderer'
 import styles from '../styles/base.module.css'
@@ -18,17 +19,17 @@ const Home: NextPage = ({ questions }: Props) => {
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
+  const { connected, error, socket } = useSocket(config.socketServerUrl)
+  const { sendMessage } = useSocketEvent(socket, 'textUpdated')
+
   const updateHandler = (update: unknown) => {
     console.log(
       `update! session ${sessionUuid}. activeQuestion ${activeQuestion}. value ${update}`
     )
-    fetch(`/api/recordUpdate`, {
-      body: JSON.stringify({
-        question: activeQuestion,
-        sessionUuid,
-        value: update
-      }),
-      method: 'POST'
+    sendMessage({
+      question: activeQuestion,
+      sessionUuid,
+      value: update
     })
   }
 
