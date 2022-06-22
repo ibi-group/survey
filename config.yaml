@@ -1,4 +1,4 @@
-socketServerUrl: http://192.168.1.180:3000
+socketServerUrl: http://localhost:3001
 questions: 
   - 
     # This question type will only display a title
