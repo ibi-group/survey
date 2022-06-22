@@ -41,14 +41,13 @@ const uploadUserData = async (user, data) => {
 
   // Delete reference to user after a day so gc can clean up memory
   clearTimeout(userTimeouts[user])
-  console.log(`User ${user} already submitted, creating new timeout`)
   userTimeouts[user] = setTimeout(() => {
     delete userQuestionMatrix[user]
     delete userTimeouts[user]
   }, 1000 * 60 * 60 * 24)
 }
 
-const io = new Server(3000, {
+const io = new Server(3001, {
   cors: {
     origin: '*'
   }

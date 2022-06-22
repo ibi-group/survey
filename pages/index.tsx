@@ -21,10 +21,14 @@ const Home: NextPage = ({ questions }: Props) => {
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
-  const { connected, error, socket } = useSocket(config.socketServerUrl)
+  const { connected, error, socket } = useSocket(config.socketServerUrl, {
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000
+  })
   const { sendMessage } = useSocketEvent(socket, 'textUpdated')
   const [hasDisconnected, setHasDisconnected] = useState(false)
   socket.on('disconnect', () => setHasDisconnected(true))
+  socket.on('connect_error', () => setHasDisconnected(true))
 
   const updateHandler = (update: unknown) => {
     console.log(
@@ -51,7 +55,7 @@ const Home: NextPage = ({ questions }: Props) => {
     <main className={styles.wrapper}>
       <Alert
         alertText="No connection to internet."
-        show={!connected && hasDisconnected}
+        show={!connected && (hasDisconnected || !!error)}
       />
       {/* dynamically imported content */}
       {questions.map((question, index) => {
