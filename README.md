@@ -32,3 +32,5 @@ To see the localization support, append a language code at the end of the URL (f
 ### How to get the S3 upload to work
 
 An `env.example` file is provided. By placing AWS credentials and a bucket name in the corresponding slots, next will pick up on them and automatically upload results into the specified bucket.
+#### Note about `yarn start`
+`yarn start` will only serve what has been built by `yarn build`. For active development, `yarn dev` is recommended.

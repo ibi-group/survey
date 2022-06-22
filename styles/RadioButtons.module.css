@@ -6,11 +6,25 @@
   font-size: 20px;
   border: none;
   overflow: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
-.button {
-  display: none;
+.button,
+.button:focus {
+  width: 0;
+  height: 0;
+
+  /* on chrome the width/height are fine */
+  -moz-appearance: none;
 }
+.button:focus ~ .label {
+  border-style: dashed !important;
+}
+
 .button ~ .label {
   padding: 3em;
   color: #333;

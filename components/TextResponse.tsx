@@ -28,12 +28,23 @@ const TextResponse = ({
 
   return (
     <>
-      {title && <h3>{title}</h3>}
+      {title && (
+        <h3>
+          <label htmlFor={title}>{title}</label>
+        </h3>
+      )}
       <textarea
         className={styles.textbox}
+        id={title}
         name={title}
         onChange={(e) => updateUserText(e.target.value)}
         placeholder={placeholder}
+        // Focus the textarea on render
+        ref={(textboxRef) => {
+          if (textboxRef) {
+            textboxRef.focus()
+          }
+        }}
         value={userText}
       />
     </>

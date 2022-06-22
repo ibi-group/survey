@@ -1,24 +1,38 @@
-import { RadioButtonProps, RadioButtons } from '../RadioButtons'
+import { useTranslations } from 'next-intl'
+
+import { RadioButtonProps, RadioButtons } from './RadioButtons'
 import {
   SatisfactionSlider,
   SatisfactionSliderProps
-} from '../SatisfactionSlider'
-import { TextResponse, TextResponseProps } from '../TextResponse'
+} from './SatisfactionSlider'
+import { TextResponse, TextResponseProps } from './TextResponse'
 
 export type Question = {
-  // TODO: superior type
-  i18n?: Record<string, any>
+  i18n?: IntlMessages & { options: Record<string, string> }
   title?: string
   type: string
 } & (RadioButtonProps | SatisfactionSliderProps | TextResponseProps)
 
-const renderQuestion = (
-  question: Question,
+const QuestionRenderer = ({
+  question,
+  updateCallback
+}: {
+  question: Question
   updateCallback?: (update: unknown) => void
-) => {
+}) => {
+  const t = useTranslations()
+
   const { title, type } = question
 
-  const failure = <h2>{type} was misconfigured.</h2>
+  const failure = (
+    <>
+      <h1>Error</h1>
+      <p>{type} was misconfigured.</p>
+    </>
+  )
+
+  // TODO: move title rendering to this component?
+  // Only if there is a way to make it stable across all components
 
   switch (type) {
     case 'info':
@@ -47,7 +61,9 @@ const renderQuestion = (
       return (
         <TextResponse
           placeholder={
-            'placeholder' in question ? question.placeholder : undefined
+            'placeholder' in question
+              ? question.placeholder
+              : t('TextResponse.enterText')
           }
           title={title}
           updateCallback={updateCallback}
@@ -56,13 +72,15 @@ const renderQuestion = (
     default:
       console.warn(`Invalid question type ${type}`)
       return (
-        <h2>
-          The configuration contains an invalid question type{' '}
-          <pre style={{ display: 'inline' }}>{type || 'undefined'}</pre>. See
-          console for details.
-        </h2>
+        <>
+          <h1>Error</h1>
+          <p>
+            The configuration contains an invalid question type{' '}
+            <code>{type || 'undefined'}</code>. See console for details.
+          </p>
+        </>
       )
   }
 }
 
-export { renderQuestion }
+export default QuestionRenderer
