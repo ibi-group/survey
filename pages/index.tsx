@@ -69,6 +69,7 @@ const Home: NextPage = ({ questions }: Props) => {
             }}
           >
             <QuestionRenderer
+              disabled={!connected}
               question={question}
               updateCallback={(update: unknown) => {
                 return activeQuestion === index
@@ -90,10 +91,13 @@ const Home: NextPage = ({ questions }: Props) => {
       )}
 
       <section className={styles.buttons}>
-        <button disabled={activeQuestion === 0} onClick={prevQuestion}>
+        <button
+          disabled={activeQuestion === 0 || !connected}
+          onClick={prevQuestion}
+        >
           {t('index.prev')}
         </button>
-        <button disabled={surveyOver} onClick={nextQuestion}>
+        <button disabled={surveyOver || !connected} onClick={nextQuestion}>
           {t('index.next')}
         </button>
       </section>

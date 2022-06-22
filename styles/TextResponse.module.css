@@ -15,7 +15,7 @@
   transition: all 0.2s ease-in-out;
   width: 100%;
 }
-.textbox:hover {
+.textbox:hover :not(.disabled) {
   background: #dadadadd;
 }
 .textbox:focus {

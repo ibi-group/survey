@@ -5,11 +5,13 @@ import { useDebounce } from 'use-lodash-debounce'
 import styles from '../styles/TextResponse.module.css'
 
 export type TextResponseProps = {
+  disabled?: boolean
   placeholder?: string
   title?: string
   updateCallback?: (update: string) => void
 }
 const TextResponse = ({
+  disabled = false,
   placeholder,
   title,
   updateCallback
@@ -34,7 +36,8 @@ const TextResponse = ({
         </h3>
       )}
       <textarea
-        className={styles.textbox}
+        className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}
+        disabled={disabled}
         id={title}
         name={title}
         onChange={(e) => updateUserText(e.target.value)}
