@@ -7,6 +7,7 @@ import { useSocket, useSocketEvent } from 'socket.io-react-hook'
 import { Question, renderQuestion } from '../components/util/questionRenderer'
 import styles from '../styles/base.module.css'
 import config from '../config.yaml'
+import { Alert } from '../components/Alert'
 
 const sessionUuid = v4()
 
@@ -21,6 +22,8 @@ const Home: NextPage = ({ questions }: Props) => {
 
   const { connected, error, socket } = useSocket(config.socketServerUrl)
   const { sendMessage } = useSocketEvent(socket, 'textUpdated')
+  const [hasDisconnected, setHasDisconnected] = useState(false)
+  socket.on('disconnect', () => setHasDisconnected(true))
 
   const updateHandler = (update: unknown) => {
     console.log(
@@ -44,6 +47,10 @@ const Home: NextPage = ({ questions }: Props) => {
 
   return (
     <main className={styles.wrapper}>
+      <Alert
+        alertText="No connection to internet."
+        show={!connected && hasDisconnected}
+      />
       {/* dynamically imported content */}
       {questions.map((question, index) => {
         if (question.i18n) {
