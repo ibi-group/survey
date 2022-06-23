@@ -66,6 +66,8 @@ i18n:
       prev: "〈 Previous"
       completion: "Thanks. Your response has been submitted."
       completionSecondary: ""
+    alert:
+      noConnection: "Disconnected from the internet."
     TextResponse:
       enterText: "Enter text..."
   fr: 
@@ -76,6 +78,8 @@ i18n:
       completionSecondary: "This is French."
     TextResponse:
       enterText: "Entrez du texte..."
+    alert:
+      noConnection: "Déconnecté d'internet."
   de-DE:
     index:
       next: "Weiter"
@@ -84,4 +88,6 @@ i18n:
       completionSecondary: "Sie lesen Deutsch"
     TextResponse:
       enterText: "Text eingeben..."
+    alert:
+      noConnection: "Bitte übersetze das ins Deutsche, Miles, danke"
 

@@ -1,5 +1,3 @@
-const process = require('node:process')
-
 const aws = require('aws-sdk')
 const { parse } = require('json2csv')
 const { Server } = require('socket.io')

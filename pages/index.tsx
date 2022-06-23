@@ -54,7 +54,7 @@ const Home: NextPage = ({ questions }: Props) => {
   return (
     <main className={styles.wrapper}>
       <Alert
-        alertText="No connection to internet."
+        alertText={t('alert.noConnection')}
         show={!connected && (hasDisconnected || !!error)}
       />
       {/* dynamically imported content */}
