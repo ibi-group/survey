@@ -4,6 +4,8 @@ const aws = require('aws-sdk')
 const { parse } = require('json2csv')
 const { Server } = require('socket.io')
 
+const PORT = process.env.PORT || 4000
+
 const userQuestionMatrix = {}
 const userTimeouts = {}
 
@@ -47,11 +49,13 @@ const uploadUserData = async (user, data) => {
   }, 1000 * 60 * 60 * 24)
 }
 
-const io = new Server(3001, {
+const io = new Server(PORT, {
   cors: {
     origin: '*'
   }
 })
+
+console.log(`Server running on port ${PORT}`)
 
 io.on('connection', (socket) => {
   console.log('New user connected.')
