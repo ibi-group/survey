@@ -11,7 +11,11 @@ const Alert = ({ alertText, show }: AlertProps) => {
   const wrapperStyles = show
     ? styles.wrapper
     : styles.wrapper + ' ' + styles.hidden
-  return <div className={wrapperStyles}>{alertText}</div>
+  return (
+    <div aria-hidden={!show} className={wrapperStyles}>
+      {alertText}
+    </div>
+  )
 }
 
 export { Alert }
