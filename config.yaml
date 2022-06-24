@@ -89,5 +89,5 @@ i18n:
     TextResponse:
       enterText: "Text eingeben..."
     alert:
-      noConnection: "Bitte übersetze das ins Deutsche, Miles, danke"
+      noConnection: "Internetverbindung verloren."
 
