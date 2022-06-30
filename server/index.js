@@ -2,7 +2,7 @@ const aws = require('aws-sdk')
 const { parse } = require('json2csv')
 const { Server } = require('socket.io')
 
-const PORT = process.env.PORT || 4000
+const config = require('../server.config.json')
 
 const userQuestionMatrix = {}
 const userTimeouts = {}
@@ -27,11 +27,15 @@ const uploadUserData = async (user, data) => {
 
   const csv = parse(data)
   try {
+    const date = new Date()
+    const dateString = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`
     const upload = await new aws.S3.ManagedUpload({
       params: {
         Body: csv,
         Bucket: BUCKET_NAME,
-        Key: `survey-responses/${user}.csv`
+        Key: `survey-responses/${dateString}/${user}.csv`
       }
     }).promise()
     console.log(`${upload.Key} uploaded`)
@@ -47,13 +51,13 @@ const uploadUserData = async (user, data) => {
   }, 1000 * 60 * 60 * 24)
 }
 
-const io = new Server(PORT, {
+const io = new Server(config.port, {
   cors: {
     origin: '*'
   }
 })
 
-console.log(`Server running on port ${PORT}`)
+console.log(`Server running on port ${config.port}`)
 
 io.on('connection', (socket) => {
   console.log('New user connected.')
