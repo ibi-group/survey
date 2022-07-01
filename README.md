@@ -35,7 +35,8 @@ A server component is included which is used as an intermediary between the fron
 
 The server can be configured in `server.config.json`. Ensure that the AWS details are correctly filled out, and the port matches what is expected on the client. 
 
-To run the server, run `yarn server`.
+To run the server in dev mode, run `yarn server-dev`.
+To run the server in production mode, run `yarn server`.
 
 #### Note about `yarn start`
 `yarn start` will only serve what has been built by `yarn build`. For active development, `yarn dev` is recommended.
