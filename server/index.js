@@ -18,9 +18,8 @@ const updateUserQuestion = (user, question, text) => {
 }
 
 const uploadUserData = async (user, data) => {
-  const { AWS_BUCKET_NAME: BUCKET_NAME } = process.env
   console.log(`Uploading data for ${user}`)
-  if (!BUCKET_NAME) {
+  if (!config.bucketName) {
     console.error('No bucket name provided')
     return
   }
@@ -34,7 +33,7 @@ const uploadUserData = async (user, data) => {
     const upload = await new aws.S3.ManagedUpload({
       params: {
         Body: csv,
-        Bucket: BUCKET_NAME,
+        Bucket: config.bucketName,
         Key: `survey-responses/${dateString}/${user}.csv`
       }
     }).promise()
