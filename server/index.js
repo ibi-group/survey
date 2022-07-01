@@ -7,6 +7,13 @@ const config = require('../server.config.json')
 const userQuestionMatrix = {}
 const userTimeouts = {}
 
+aws.config.update({
+  accessKeyId: config.awsAccessKeyId,
+  region: config.awsRegion,
+  secretAccessKey: config.awsSecretKey,
+  signatureVersion: 'v4'
+})
+
 const updateUserQuestion = (user, question, text) => {
   if (userQuestionMatrix[user]) {
     userQuestionMatrix[user][question] = text
