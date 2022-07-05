@@ -6,12 +6,14 @@ import styles from '../styles/RadioButtons.module.css'
 
 export type RadioButtonProps = {
   defaultOptionIndex?: number
+  disabled?: boolean
   options: string[]
   title?: string
   updateCallback?: (update: number) => void
 }
 const RadioButtons = ({
   defaultOptionIndex = 0,
+  disabled = false,
   options,
   title,
   updateCallback
@@ -34,6 +36,7 @@ const RadioButtons = ({
       {title && <h3>{title}</h3>}
       <fieldset
         className={styles.container}
+        disabled={disabled}
         onChange={
           (e) =>
             updateSelectedOption(parseInt((e.target as HTMLInputElement).value))

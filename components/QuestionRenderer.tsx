@@ -14,9 +14,11 @@ export type Question = {
 } & (RadioButtonProps | SatisfactionSliderProps | TextResponseProps)
 
 const QuestionRenderer = ({
+  disabled,
   question,
   updateCallback
 }: {
+  disabled: boolean
   question: Question
   updateCallback?: (update: unknown) => void
 }) => {
@@ -41,6 +43,7 @@ const QuestionRenderer = ({
       if (!('options' in question)) return failure
       return (
         <RadioButtons
+          disabled={disabled}
           options={question.options}
           title={title}
           updateCallback={updateCallback}
@@ -49,6 +52,7 @@ const QuestionRenderer = ({
     case 'satisfaction':
       return (
         <SatisfactionSlider
+          disabled={disabled}
           initial={'initial' in question ? question.initial : undefined}
           max={'max' in question ? question.max : undefined}
           min={'min' in question ? question.min : undefined}
@@ -60,6 +64,7 @@ const QuestionRenderer = ({
     case 'textarea':
       return (
         <TextResponse
+          disabled={disabled}
           placeholder={
             'placeholder' in question
               ? question.placeholder

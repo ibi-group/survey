@@ -2,11 +2,13 @@ import type { GetStaticProps, NextPage } from 'next'
 import { useState } from 'react'
 import { v4 } from 'uuid'
 import { useTranslations } from 'next-intl'
+import { useSocket, useSocketEvent } from 'socket.io-react-hook'
 import { clone } from 'lodash'
 
 import QuestionRenderer, { Question } from '../components/QuestionRenderer'
 import styles from '../styles/base.module.css'
 import config from '../config.yaml'
+import { Alert } from '../components/Alert'
 
 const sessionUuid = v4()
 
@@ -19,17 +21,23 @@ const Home: NextPage = ({ questions }: Props) => {
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
+  const { connected, error, socket } = useSocket(config.socketServerUrl, {
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000
+  })
+  const { sendMessage } = useSocketEvent(socket, 'textUpdated')
+  const [hasDisconnected, setHasDisconnected] = useState(false)
+  socket.on('disconnect', () => setHasDisconnected(true))
+  socket.on('connect_error', () => setHasDisconnected(true))
+
   const updateHandler = (update: unknown) => {
     console.log(
       `update! session ${sessionUuid}. activeQuestion ${activeQuestion}. value ${update}`
     )
-    fetch(`/api/recordUpdate`, {
-      body: JSON.stringify({
-        question: activeQuestion,
-        sessionUuid,
-        value: update
-      }),
-      method: 'POST'
+    sendMessage({
+      question: activeQuestion,
+      sessionUuid,
+      value: update
     })
   }
 
@@ -45,6 +53,10 @@ const Home: NextPage = ({ questions }: Props) => {
 
   return (
     <main className={styles.wrapper}>
+      <Alert
+        alertText={t('alert.noConnection')}
+        show={!connected && (hasDisconnected || !!error)}
+      />
       {/* dynamically imported content */}
       {questions.map((question, index) => {
         return (
@@ -57,6 +69,7 @@ const Home: NextPage = ({ questions }: Props) => {
             }}
           >
             <QuestionRenderer
+              disabled={!connected}
               question={question}
               updateCallback={(update: unknown) => {
                 return activeQuestion === index
@@ -78,10 +91,13 @@ const Home: NextPage = ({ questions }: Props) => {
       )}
 
       <section className={styles.buttons}>
-        <button disabled={activeQuestion === 0} onClick={prevQuestion}>
+        <button
+          disabled={activeQuestion === 0 || !connected}
+          onClick={prevQuestion}
+        >
           {t('index.prev')}
         </button>
-        <button disabled={surveyOver} onClick={nextQuestion}>
+        <button disabled={surveyOver || !connected} onClick={nextQuestion}>
           {t('index.next')}
         </button>
       </section>

@@ -5,6 +5,7 @@ import styles from '../styles/SatisfactionSlider.module.css'
 import Smiley from './Smiley'
 
 export type SatisfactionSliderProps = {
+  disabled?: boolean
   initial?: number
   max?: number
   min?: number
@@ -13,6 +14,7 @@ export type SatisfactionSliderProps = {
   updateCallback?: (update: number) => void
 }
 const SatisfactionSlider = ({
+  disabled = false,
   initial = 6,
   max = 10,
   min = 0,
@@ -38,7 +40,7 @@ const SatisfactionSlider = ({
   return (
     <>
       {title && <h3>{title}</h3>}
-      <fieldset className={styles.wrapper}>
+      <fieldset className={styles.wrapper} disabled={disabled}>
         <Smiley percentage={scaledNumber} />
         <input name={title} type="hidden" value={scaledNumber} />
         <input

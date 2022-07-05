@@ -1,0 +1,8 @@
+{
+  "port": 3000,
+  "bucketName": "example",
+  "awsSecretKey": "<COPY SECRET KEY HERE>",
+  "awsAccessKeyId": "<COPY ACCESS KEY HERE>",
+  "awsBucketName": "<INSERT BUCKET NAME HERE>",
+  "awsRegion": "<INSERT REGION HERE>"
+}

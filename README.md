@@ -29,5 +29,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 To see the localization support, append a language code at the end of the URL (for example, [http://localhost:3000/fr](http://localhost:3000/fr) will render French strings). The system will attempt to map that key to languages defined in the `next.config.js`. Language strings are stored in `config.yaml`.
 
+## How to run backend
+
+A server component is included which is used as an intermediary between the front end and AWS S3, where the results are stored. The server operates with a continuous socket connect to the clients to ensure that all data entrered is captured, even if it isn't submitted. When the user disconnects, the data is uploaded to S3. 
+
+The server can be configured in `server.config.json`. Ensure that the AWS details are correctly filled out, and the port matches what is expected on the client. 
+
+To run the server in dev mode, run `yarn server-dev`.
+To run the server in production mode, run `yarn server`.
+
 #### Note about `yarn start`
 `yarn start` will only serve what has been built by `yarn build`. For active development, `yarn dev` is recommended.
