@@ -15,13 +15,14 @@ const sessionUuid = v4()
 type Props = {
   children?: React.ReactNode
   questions?: Question[]
+  socketServerUrl: string
 }
 
-const Home: NextPage = ({ questions }: Props) => {
+const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
-  const { connected, error, socket } = useSocket(config.socketServerUrl, {
+  const { connected, error, socket } = useSocket(socketServerUrl, {
     reconnectionAttempts: 5,
     reconnectionDelay: 1000
   })
@@ -106,6 +107,14 @@ const Home: NextPage = ({ questions }: Props) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const socketServerUrl = process.env.SOCKET_SERVER_URL
+
+  if (!socketServerUrl) {
+    throw Error(
+      'SOCKET_SERVER_URL env variable not set, interface will not work properly.'
+    )
+  }
+
   const messages = config.i18n[context.locale as keyof typeof config.i18n]
   const questionMessages: Record<
     string,
@@ -144,7 +153,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       messages: { ...messages, ...questionMessages },
-      questions: localizedQuestions
+      questions: localizedQuestions,
+      socketServerUrl
     }
   }
 }
