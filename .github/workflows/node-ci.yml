@@ -24,3 +24,5 @@ jobs:
         run: yarn tsc
       - name: Build example project
         run: yarn build
+        env:
+          SOCKET_SERVER_URL: not_null_but_also_not_a_valid_url

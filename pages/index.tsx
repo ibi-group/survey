@@ -15,13 +15,20 @@ const sessionUuid = v4()
 type Props = {
   children?: React.ReactNode
   questions?: Question[]
+  socketServerUrl?: string
 }
 
-const Home: NextPage = ({ questions }: Props) => {
+const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
+  if (!socketServerUrl) {
+    throw Error(
+      'SOCKET_SERVER_URL env variable not set. There is nowhere to send survey results!'
+    )
+  }
+
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
-  const { connected, error, socket } = useSocket(config.socketServerUrl, {
+  const { connected, error, socket } = useSocket(socketServerUrl, {
     reconnectionAttempts: 5,
     reconnectionDelay: 1000
   })
@@ -144,7 +151,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       messages: { ...messages, ...questionMessages },
-      questions: localizedQuestions
+      questions: localizedQuestions,
+      socketServerUrl: process.env.SOCKET_SERVER_URL
     }
   }
 }
