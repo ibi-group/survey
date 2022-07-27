@@ -7,18 +7,13 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "server-dev": "nodemon server/index.js",
-    "server": "node server/index.js"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "aws-sdk": "^2.1148.0",
-    "json2csv": "^5.0.7",
     "next": "12.1.4",
     "next-intl": "^2.7.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "socket.io": "^4.5.1",
     "socket.io-react-hook": "^1.0.15",
     "use-lodash-debounce": "^1.2.0",
     "uuid": "^8.3.2"

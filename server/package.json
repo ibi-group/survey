@@ -1,0 +1,14 @@
+{
+  "name": "survey-server",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1148.0",
+    "json2csv": "^5.0.7",
+    "socket.io": "^4.5.1",
+    "uuid": "^8.3.2"
+  }
+}
