@@ -15,10 +15,16 @@ const sessionUuid = v4()
 type Props = {
   children?: React.ReactNode
   questions?: Question[]
-  socketServerUrl: string
+  socketServerUrl?: string
 }
 
 const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
+  if (!socketServerUrl) {
+    throw Error(
+      'SOCKET_SERVER_URL env variable not set. There is nowhere to send survey results!'
+    )
+  }
+
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
@@ -107,14 +113,6 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const socketServerUrl = process.env.SOCKET_SERVER_URL
-
-  if (!socketServerUrl) {
-    throw Error(
-      'SOCKET_SERVER_URL env variable not set, interface will not work properly.'
-    )
-  }
-
   const messages = config.i18n[context.locale as keyof typeof config.i18n]
   const questionMessages: Record<
     string,
@@ -154,7 +152,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       messages: { ...messages, ...questionMessages },
       questions: localizedQuestions,
-      socketServerUrl
+      socketServerUrl: process.env.SOCKET_SERVER_URL
     }
   }
 }
