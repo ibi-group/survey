@@ -85,7 +85,10 @@ io.on('connection', (socket) => {
   })
 })
 
-// Set up "cron" job for automatic concatentation every day at midnight
+// Set up "cron" job for automatic concatenation every day at midnight
 schedule.scheduleJob('0 0 * * *', function () {
   concatenatePreviousDay(aws)
 })
+
+// Run the script on startup to more gracefully handle crash situations
+concatenatePreviousDay(aws)
