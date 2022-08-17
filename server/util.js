@@ -7,12 +7,7 @@ const config = require('../server.config.json')
  * Async/await wrapper for listing all objects in an S3 bucket
  */
 const listObjectsInBucket = async (s3, bucket) => {
-  return new Promise((resolve, reject) => {
-    s3.listObjects({ Bucket: bucket }, function (err, data) {
-      if (err) reject(err)
-      else resolve(data)
-    })
-  })
+  return await s3.listObjects({ Bucket: bucket }).promise()
 }
 
 /**
