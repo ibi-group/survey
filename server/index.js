@@ -1,8 +1,11 @@
+const schedule = require('node-schedule')
 const aws = require('aws-sdk')
 const { parse } = require('json2csv')
 const { Server } = require('socket.io')
 
 const config = require('../server.config.json')
+
+const { concatenatePreviousDay } = require('./util')
 
 const userQuestionMatrix = {}
 const userTimeouts = {}
@@ -81,3 +84,11 @@ io.on('connection', (socket) => {
     }
   })
 })
+
+// Set up "cron" job for automatic concatenation every day at midnight
+schedule.scheduleJob('0 0 * * *', function () {
+  concatenatePreviousDay(aws)
+})
+
+// Run the script on startup to more gracefully handle crash situations
+concatenatePreviousDay(aws)
