@@ -17,6 +17,14 @@ yarn storybook
 
 A config file has been prepared which demonstrates available functionality. Feel free to use it as a starting point and edit it, or to start from scratch. All available options are used and described in the shipped `config.yaml` file.
 
+The front-end supports the following environment variables. Some of them are mandatory!
+
+| Variable Name     | Description                                                                                                                                                         | Example                 | Required? |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------- |
+| SOCKET_SERVER_URL | A URL pointing to a server running the socket server in the `server` directory.                                                                                     | `http://localhost:3001` | ✅        |
+| CONFIG_YML_URL    | A URL pointing to a config file. If specified, the `next build` step will download the file and _overwrite the current config.yaml_.                                |                         | ❌        |
+| LANGUAGES         | A comma separated list of languages that are defined in the config. This list MUST overlap with the languages defined in the config, otherwise the build will fail. | `en-US`, `en-US,fr-FR`  | ❌        |
+
 Run the development server:
 
 ```bash
@@ -31,12 +39,13 @@ To see the localization support, append a language code at the end of the URL (f
 
 ## How to run backend
 
-A server component is included which is used as an intermediary between the front end and AWS S3, where the results are stored. The server operates with a continuous socket connect to the clients to ensure that all data entrered is captured, even if it isn't submitted. When the user disconnects, the data is uploaded to S3. 
+A server component is included which is used as an intermediary between the front end and AWS S3, where the results are stored. The server operates with a continuous socket connect to the clients to ensure that all data entrered is captured, even if it isn't submitted. When the user disconnects, the data is uploaded to S3.
 
-The server can be configured in `server.config.json`. Ensure that the AWS details are correctly filled out, and the port matches what is expected on the client. 
+The server can be configured in `server.config.json`. Ensure that the AWS details are correctly filled out, and the port matches what is expected on the client.
 
 To run the server in dev mode, run `yarn server-dev`.
 To run the server in production mode, run `yarn server`.
 
 #### Note about `yarn start`
+
 `yarn start` will only serve what has been built by `yarn build`. For active development, `yarn dev` is recommended.
