@@ -6,7 +6,7 @@ questions:
     i18n: 
       en-US: 
         title: "Welcome"
-      fr: 
+      fr-FR: 
         title: "Bonjour"
       de-DE:
         title: "Hallo"
@@ -36,7 +36,7 @@ questions:
           - "Once I find the time"
           - "Once I get my act together"
           - "Once upon a time"
-      fr: 
+      fr-FR: 
         title: "test french string"
         # Careful: it's easy to include the wrong number of strings!
         options: 
@@ -69,7 +69,7 @@ i18n:
       noConnection: "Disconnected from the internet."
     TextResponse:
       enterText: "Enter text..."
-  fr: 
+  fr-FR: 
     index: 
       next: "Suivant"
       prev: "Précédent"
