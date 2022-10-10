@@ -8,7 +8,7 @@ const { CONFIG_YML_URL, LANGUAGES } = process.env
 const nextConfig = {
   i18n: {
     defaultLocale: 'en-US',
-    locales: LANGUAGES ? LANGUAGES.split(',') : ['en-US', 'fr', 'de-DE']
+    locales: LANGUAGES ? LANGUAGES.split(',') : ['en-US', 'fr-FR', 'de-DE']
   },
   reactStrictMode: true
 }
