@@ -16,7 +16,7 @@ const nextConfig = {
 module.exports = async () => {
   if (CONFIG_YML_URL) {
     console.log(
-      `Found CONFIG_YML_URL: ${CONFIG_YML_URL}. Downloading and replacing config.yaml`
+      `Using CONFIG_YML_URL: ${CONFIG_YML_URL}. Downloading and replacing config.yaml`
     )
     const downloadedConfig = await fetch(CONFIG_YML_URL)
     const fileStream = fs.createWriteStream('./config.yaml')

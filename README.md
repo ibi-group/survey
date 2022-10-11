@@ -19,11 +19,11 @@ A config file has been prepared which demonstrates available functionality. Feel
 
 The front-end supports the following environment variables. Some of them are mandatory!
 
-| Variable Name     | Description                                                                                                                                                         | Example                 | Required? |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | --------- |
-| SOCKET_SERVER_URL | A URL pointing to a server running the socket server in the `server` directory.                                                                                     | `http://localhost:3001` | ✅        |
-| CONFIG_YML_URL    | A URL pointing to a config file. If specified, the `next build` step will download the file and _overwrite the current config.yaml_.                                |                         | ❌        |
-| LANGUAGES         | A comma separated list of languages that are defined in the config. This list MUST overlap with the languages defined in the config, otherwise the build will fail. | `en-US`, `en-US,fr-FR`  | ❌        |
+| Variable Name     | Required? | Example                         | Description                                                                                                                                                         |
+| ----------------- | --------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SOCKET_SERVER_URL | ✅        | `http://localhost:3001`         | A URL pointing to a server running the socket server in the `server` directory.                                                                                     |
+| CONFIG_YML_URL    | ❌        | `http://example.com/config.yml` | A URL pointing to a config file. If specified, the `next build` step will download the file and _overwrite the current config.yaml_.                                |
+| LANGUAGES         | ❌        | `en-US`, `en-US,fr-FR`          | A comma separated list of languages that are defined in the config. This list MUST overlap with the languages defined in the config, otherwise the build will fail. |
 
 Run the development server:
 
