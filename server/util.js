@@ -47,6 +47,20 @@ const objectWasCreatedInLast24Hours = (s3Object) => {
 }
 
 /**
+ * Especially when sorting dates and times, it can help to have a prepended 0 before a number.
+ * This method adds that zero when applicable.
+ * @param {number} number to pad
+ * @returns        the number with a 0 prepended if the number is under 10
+ */
+const padNumber = (number) => {
+  if (number < 10) {
+    return '0' + number
+  }
+
+  return number
+}
+
+/**
  * Main method which gets all files created within the past 24 hours, concatenates them
  * into a single csv and then uploads that csv to the same bucket all the files were read from.
  */
@@ -87,9 +101,9 @@ const concatenatePreviousDay = async (aws) => {
   try {
     // TODO: extract to own method
     const date = new Date()
-    const dateString = `${date.getFullYear()}-${
+    const dateString = `${date.getFullYear()}-${padNumber(
       date.getMonth() + 1
-    }-${date.getDate()}`
+    )}-${padNumber(date.getDate())}`
 
     const upload = await new aws.S3.ManagedUpload({
       params: {
