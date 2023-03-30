@@ -8,7 +8,7 @@ interface EmojiMap {
   [key: string]: string
 }
 const EMOJI_MAP: EmojiMap = {
-  10: '☹️',
+  10: '😢',
   100: '😁',
   20: '🙁',
   30: '😕',
