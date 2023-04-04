@@ -80,6 +80,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     const user = socket.data.sessionUuid
     if (userQuestionMatrix[user]) {
+      userQuestionMatrix[user].timestamp = new Date().toLocaleString()
       uploadUserData(user, userQuestionMatrix[user])
     }
   })
