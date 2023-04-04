@@ -54,7 +54,7 @@ const objectWasCreatedInLast24Hours = (s3Object) => {
  */
 const padNumber = (number) => {
   if (number < 10) {
-    return '0' + number
+    return `0${number}`
   }
 
   return number
