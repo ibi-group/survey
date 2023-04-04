@@ -30,7 +30,7 @@ const getS3ObjectContents = async (s3, bucket, key) => {
  * and therefore is a survey response
  */
 const objectIsSurveyResponse = (s3Object) =>
-  s3Object.Key.includes('survey-responses/')
+  s3Object.Key.includes('survey-responses/') && !s3Object.Key.includes('merged')
 
 /**
  * Uses the S3 object data to determine if an S3 object was modified in the past
