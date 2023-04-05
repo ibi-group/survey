@@ -61,6 +61,16 @@ const padNumber = (number) => {
 }
 
 /**
+ * Returns the current date as a string, with padded zeroes
+ */
+const generateDateString = () => {
+  const date = new Date()
+  return `${date.getFullYear()}-${padNumber(date.getMonth() + 1)}-${padNumber(
+    date.getDate()
+  )}`
+}
+
+/**
  * Main method which gets all files created within the past 24 hours, concatenates them
  * into a single csv and then uploads that csv to the same bucket all the files were read from.
  */
@@ -99,11 +109,7 @@ const concatenatePreviousDay = async (aws) => {
   // Convert to csv and upload
   const parsed = parse(allResponses, { fields: allKeys.sort() })
   try {
-    // TODO: extract to own method
-    const date = new Date()
-    const dateString = `${date.getFullYear()}-${padNumber(
-      date.getMonth() + 1
-    )}-${padNumber(date.getDate())}`
+    const dateString = generateDateString()
 
     const upload = await new aws.S3.ManagedUpload({
       params: {
@@ -118,4 +124,4 @@ const concatenatePreviousDay = async (aws) => {
   }
 }
 
-module.exports = { concatenatePreviousDay }
+module.exports = { concatenatePreviousDay, generateDateString }
