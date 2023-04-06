@@ -12,7 +12,7 @@ export type RadioButtonProps = {
   updateCallback?: (update: number) => void
 }
 const RadioButtons = ({
-  defaultOptionIndex = 0,
+  defaultOptionIndex = -1,
   disabled = false,
   options,
   title,

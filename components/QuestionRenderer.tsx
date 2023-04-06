@@ -5,14 +5,21 @@ import {
   SatisfactionSlider,
   SatisfactionSliderProps
 } from './SatisfactionSlider'
+import { Stars, StarsProps } from './Stars'
 import { TextResponse, TextResponseProps } from './TextResponse'
 
 export type Question = {
   i18n?: IntlMessages & { options: Record<string, string> }
   title?: string
   type: string
-} & (RadioButtonProps | SatisfactionSliderProps | TextResponseProps)
+} & (
+  | RadioButtonProps
+  | SatisfactionSliderProps
+  | TextResponseProps
+  | StarsProps
+)
 
+// eslint-disable-next-line complexity
 const QuestionRenderer = ({
   disabled,
   question,
@@ -45,6 +52,19 @@ const QuestionRenderer = ({
         <RadioButtons
           disabled={disabled}
           options={question.options}
+          title={title}
+          updateCallback={updateCallback}
+        />
+      )
+    case 'stars':
+      return (
+        <Stars
+          defaultOptionIndex={
+            'defaultOptionIndex' in question
+              ? question.defaultOptionIndex
+              : undefined
+          }
+          number={'number' in question ? question.number : undefined}
           title={title}
           updateCallback={updateCallback}
         />
