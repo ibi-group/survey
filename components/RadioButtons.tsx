@@ -37,15 +37,17 @@ const RadioButtons = ({
       <fieldset
         className={styles.container}
         disabled={disabled}
-        onChange={
-          (e) =>
-            updateSelectedOption(parseInt((e.target as HTMLInputElement).value))
-          // eslint-disable-next-line react/jsx-curly-newline
-        }
+        onChange={(e) => {
+          const selectedValue = parseInt((e.target as HTMLInputElement).value)
+          updateSelectedOption(selectedValue)
+        }}
       >
+        <legend>{title}</legend>
         {options?.map((option, index) => (
           <label key={index}>
             <input
+              aria-checked={index === selectedOption}
+              aria-label={option}
               className={styles.button}
               defaultChecked={index === selectedOption}
               id={`${index}`}
