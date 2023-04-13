@@ -49,7 +49,14 @@ const SatisfactionSlider = ({
           value={scaledNumber}
         />
         <input
-          aria-label={title}
+          aria-label={
+            title +
+            ' with ' +
+            min +
+            ' being the worst rating and ' +
+            max +
+            ' being the best rating'
+          }
           aria-valuemax={max}
           aria-valuemin={min}
           aria-valuenow={scaledNumber}
