@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-for */
 import React, { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 
@@ -33,8 +32,8 @@ const RadioButtons = ({
 
   return (
     <>
-      {title && <h3>{title}</h3>}
       <fieldset
+        aria-labelledby={`${uuid}-legend`}
         className={styles.container}
         disabled={disabled}
         onChange={(e) => {
@@ -42,17 +41,16 @@ const RadioButtons = ({
           updateSelectedOption(selectedValue)
         }}
       >
-        <legend>{title}</legend>
+        {title && <legend id={`${uuid}-legend`}>{title}</legend>}
         {options?.map((option, index) => (
-          <label key={index}>
+          <label htmlFor={`${uuid}-${index}`} key={index}>
             <input
               aria-checked={index === selectedOption}
               aria-label={option}
+              checked={index === selectedOption}
               className={styles.button}
-              defaultChecked={index === selectedOption}
-              id={`${index}`}
+              id={`${uuid}-${index}`}
               name={uuid}
-              tabIndex={0}
               type="radio"
               value={index}
             />
