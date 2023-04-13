@@ -52,7 +52,7 @@ const RadioButtons = ({
               defaultChecked={index === selectedOption}
               id={`${index}`}
               name={uuid}
-              tabIndex={index}
+              tabIndex={0}
               type="radio"
               value={index}
             />
