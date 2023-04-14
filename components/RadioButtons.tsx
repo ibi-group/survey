@@ -43,7 +43,7 @@ const RadioButtons = ({
       >
         {title && <legend id={`${uuid}-legend`}>{title}</legend>}
         {options?.map((option, index) => (
-          <label htmlFor={`${uuid}-${index}`} key={index}>
+          <label htmlFor={title} key={index}>
             <input
               aria-checked={index === selectedOption}
               aria-label={option}

@@ -42,12 +42,7 @@ const SatisfactionSlider = ({
       <fieldset className={styles.wrapper} disabled={disabled}>
         {title && <legend id={`${title}-legend`}>{title}</legend>}
         <Smiley percentage={scaledNumber} />
-        <input
-          aria-hidden="true"
-          name={title}
-          type="hidden"
-          value={scaledNumber}
-        />
+        <input aria-hidden="true" name={title} type="hidden" value={number} />
         <input
           aria-label={
             title +
@@ -59,7 +54,7 @@ const SatisfactionSlider = ({
           }
           aria-valuemax={max}
           aria-valuemin={min}
-          aria-valuenow={scaledNumber}
+          aria-valuenow={number}
           max={max}
           min={min}
           name={title}
