@@ -43,6 +43,7 @@ const QuestionRenderer = ({
       if (!('options' in question)) return failure
       return (
         <RadioButtons
+          defaultOptionIndex={question.defaultOptionIndex}
           disabled={disabled}
           options={question.options}
           title={title}
