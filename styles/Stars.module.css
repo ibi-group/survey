@@ -1,0 +1,12 @@
+.hidden {
+  display: none;
+}
+
+.star {
+  height: 45px;
+  width: 45px;
+  overflow: unset;
+}
+.star:hover {
+  opacity: 0.5;
+}
