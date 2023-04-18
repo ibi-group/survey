@@ -33,7 +33,7 @@ const RadioButtons = ({
 
   return (
     <>
-      {title && <h3>{title}</h3>}
+      {title && <h3 className={styles.title}>{title}</h3>}
       <fieldset
         className={styles.container}
         disabled={disabled}

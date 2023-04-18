@@ -93,7 +93,7 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
       {surveyOver && (
         <div className={styles.question}>
           <h1>{t('index.completion')}</h1>
-          <h2>{t('index.completionSecondary')}</h2>
+          <span className="subtitle">{t('index.completionSecondary')}</span>
         </div>
       )}
 
@@ -128,6 +128,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
         // NOTE: this doesn't use the internationalization library, but achieves the same outcome
         updatedQuestion.title = translations.title
+
+        if (translations?.subtitle) {
+          updatedQuestion.subtitle = translations.subtitle
+        }
 
         if (translations?.options) {
           updatedQuestion = {

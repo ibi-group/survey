@@ -7,7 +7,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #222;
-  background: rgb(192, 230, 255);
 }
 
 a {
@@ -18,3 +17,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+h1, h3.center {
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.75em;
+}
+
+h3.center {
+  padding-left: 20px
+}
+
+.subtitle {
+  font-size: 24px;
+  text-align: center;
+}
+

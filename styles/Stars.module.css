@@ -10,3 +10,9 @@
 .star:hover {
   opacity: 0.5;
 }
+
+.container {
+  justify-content: center;
+  margin-top: 2em;
+  gap: 20px;
+}

@@ -1,11 +1,12 @@
 questions: 
   - 
-    # This question type will only display a title
+    # This question type will only display a title & optional subtitle
     type: "info"
     # Internationalization is supported, but optional!
     i18n: 
       en-US: 
-        title: "Welcome"
+        title: "Thanks for giving us some feedback!"
+        subtitle: "Click 'next' to continue"
       fr-FR: 
         title: "Bonjour"
       de-DE:
@@ -50,6 +51,11 @@ questions:
         options:
           - "option 1"
           - "this is an example of making a mistake and mismatching the number of options in each language. Things will render properly, but users of this langauge will not be able to select all options!"
+  -
+    # Example of stars question
+    type: stars
+    title: "How many stars do you see?"
+    number: 5
   - 
     # This is an example of a textarea question with placeholder content
     type: "textarea"
@@ -63,8 +69,8 @@ i18n:
     index: 
       next: "Next 〉"
       prev: "〈 Previous"
-      completion: "Thanks. Your response has been submitted."
-      completionSecondary: ""
+      completion: "Thanks!"
+      completionSecondary: "Your response has been submitted."
     alert:
       noConnection: "Disconnected from the internet."
     TextResponse:

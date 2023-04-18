@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 20px;
+  gap: 0 20px;
   font-size: 20px;
   border: none;
   overflow: scroll;
@@ -22,11 +22,12 @@
   -moz-appearance: none;
 }
 .button:focus ~ .label {
-  border-style: dashed !important;
+  outline: rgb(124, 186, 231) 2px solid;
+  outline-offset: 2px;
 }
 
 .button ~ .label {
-  padding: 3em;
+  padding: .85em 1.75em;
   color: #333;
   transition: all 0.1s ease-in-out;
   display: block;
@@ -37,4 +38,8 @@
 .button:checked ~ .label {
   color: #000;
   border: 5px solid #333;
+}
+
+h3.title {
+  padding: 0 20px
 }

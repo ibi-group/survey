@@ -10,6 +10,7 @@ import { TextResponse, TextResponseProps } from './TextResponse'
 
 export type Question = {
   i18n?: IntlMessages & { options: Record<string, string> }
+  subtitle?: string
   title?: string
   type: string
 } & (
@@ -31,7 +32,7 @@ const QuestionRenderer = ({
 }) => {
   const t = useTranslations()
 
-  const { title, type } = question
+  const { subtitle, title, type } = question
 
   const failure = (
     <>
@@ -45,7 +46,12 @@ const QuestionRenderer = ({
 
   switch (type) {
     case 'info':
-      return <h1>{title}</h1>
+      return (
+        <>
+          <h1>{title}</h1>
+          <span className="subtitle">{subtitle}</span>
+        </>
+      )
     case 'radio':
       if (!('options' in question)) return failure
       return (

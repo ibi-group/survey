@@ -39,7 +39,7 @@ const SatisfactionSlider = ({
 
   return (
     <>
-      {title && <h3>{title}</h3>}
+      {title && <h3 className="center">{title}</h3>}
       <fieldset className={styles.wrapper} disabled={disabled}>
         <Smiley percentage={scaledNumber} />
         <input name={title} type="hidden" value={scaledNumber} />

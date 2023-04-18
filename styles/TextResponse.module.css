@@ -6,14 +6,13 @@
   box-sizing: border-box;
   color: #333;
   font-family: inherit;
-  font-size: 2em;
+  font-size: 1.5em;
   height: 100%;
   max-width: 860px;
   min-height: 300px;
   padding: 1em;
   resize: none;
   transition: all 0.2s ease-in-out;
-  width: 100%;
 }
 .textbox:hover :not(.disabled) {
   background: #dadadadd;
