@@ -5,7 +5,7 @@ const { Server } = require('socket.io')
 
 const config = require('../server.config.json')
 
-const { concatenatePreviousDay } = require('./util')
+const { concatenatePreviousDay, generateDateString } = require('./util')
 
 const userQuestionMatrix = {}
 const userTimeouts = {}
@@ -36,10 +36,8 @@ const uploadUserData = async (user, data) => {
 
   const csv = parse(data)
   try {
-    const date = new Date()
-    const dateString = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`
+    const dateString = generateDateString()
+
     const upload = await new aws.S3.ManagedUpload({
       params: {
         Body: csv,
