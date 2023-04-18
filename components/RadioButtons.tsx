@@ -49,7 +49,6 @@ const RadioButtons = ({
         {options?.map((option, index) => (
           <label htmlFor={title} key={index}>
             <input
-              aria-checked={index === selectedOption}
               aria-label={option}
               checked={index === selectedOption}
               className={styles.button}

@@ -1,8 +1,6 @@
 import styles from '../styles/SatisfactionSlider.module.css'
 
 type Props = {
-  max?: number
-  min?: number
   percentage: number
 }
 
@@ -20,7 +18,9 @@ const EMOJI_MAP: EmojiMap = {
   90: '😄'
 }
 
-const Smiley = ({ max = 10, min = 0, percentage }: Props) => {
+const Smiley = ({ percentage }: Props) => {
+  const emojiKeys = Object.keys(EMOJI_MAP).map(Number)
+  const [min, max] = [Math.min(...emojiKeys), Math.max(...emojiKeys)]
   const matchingEmoji = Object.keys(EMOJI_MAP).find(
     (key) => parseInt(key) >= percentage * 100
   )
@@ -28,8 +28,8 @@ const Smiley = ({ max = 10, min = 0, percentage }: Props) => {
 
   return (
     <span
-      aria-valuemax={max}
-      aria-valuemin={min}
+      aria-valuemax={max / 10}
+      aria-valuemin={min / 10}
       aria-valuenow={parseInt(matchingEmoji) / 10}
       className={styles.large}
       role="slider"
