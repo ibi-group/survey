@@ -47,11 +47,11 @@ const RadioButtons = ({
           </legend>
         )}
         {options?.map((option, index) => (
-          <label htmlFor={title} key={index}>
+          <label htmlFor={`${uuid}-${index}`} key={index}>
             <input
-              aria-label={option}
-              checked={index === selectedOption}
+              aria-labelledby={option}
               className={styles.button}
+              defaultChecked={index === selectedOption}
               id={`${uuid}-${index}`}
               name={uuid}
               type="radio"
