@@ -30,7 +30,7 @@ const getS3ObjectContents = async (s3, bucket, key) => {
  * and therefore is a survey response
  */
 const objectIsSurveyResponse = (s3Object) =>
-  s3Object.Key.includes('survey-responses/')
+  s3Object.Key.includes('survey-responses/') && !s3Object.Key.includes('merged')
 
 /**
  * Uses the S3 object data to determine if an S3 object was modified in the past
@@ -58,6 +58,16 @@ const padNumber = (number) => {
   }
 
   return number
+}
+
+/**
+ * Returns the current date as a string, with padded zeroes
+ */
+const generateDateString = () => {
+  const date = new Date()
+  return `${date.getFullYear()}-${padNumber(date.getMonth() + 1)}-${padNumber(
+    date.getDate()
+  )}`
 }
 
 /**
@@ -99,11 +109,7 @@ const concatenatePreviousDay = async (aws) => {
   // Convert to csv and upload
   const parsed = parse(allResponses, { fields: allKeys.sort() })
   try {
-    // TODO: extract to own method
-    const date = new Date()
-    const dateString = `${date.getFullYear()}-${padNumber(
-      date.getMonth() + 1
-    )}-${padNumber(date.getDate())}`
+    const dateString = generateDateString()
 
     const upload = await new aws.S3.ManagedUpload({
       params: {
@@ -118,4 +124,4 @@ const concatenatePreviousDay = async (aws) => {
   }
 }
 
-module.exports = { concatenatePreviousDay }
+module.exports = { concatenatePreviousDay, generateDateString }
