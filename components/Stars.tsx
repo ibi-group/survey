@@ -52,7 +52,11 @@ const Stars = ({
 
   return (
     <>
-      {title && <h3>{title}</h3>}
+      {title && (
+        <legend id={`rating-${title}`}>
+          <h2>{title}</h2>
+        </legend>
+      )}
       <fieldset
         className={styles.container}
         onChange={
