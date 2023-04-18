@@ -41,7 +41,11 @@ const RadioButtons = ({
           updateSelectedOption(selectedValue)
         }}
       >
-        {title && <legend id={`${uuid}-legend`}>{title}</legend>}
+        {title && (
+          <legend id={`${uuid}-legend`}>
+            <h2>{title}</h2>
+          </legend>
+        )}
         {options?.map((option, index) => (
           <label htmlFor={title} key={index}>
             <input
