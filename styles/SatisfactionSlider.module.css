@@ -10,3 +10,8 @@
   gap: 10px;
   justify-content: center;
 }
+
+.output {
+  display: none;
+  visibility: hidden;
+}

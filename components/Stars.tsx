@@ -52,12 +52,8 @@ const Stars = ({
 
   return (
     <>
-      {title && (
-        <legend id={`rating-${title}`}>
-          <h2>{title}</h2>
-        </legend>
-      )}
       <fieldset
+        aria-labelledby={`star-rating-${title}`}
         className={styles.container}
         onChange={
           (e) =>
@@ -65,18 +61,23 @@ const Stars = ({
           // eslint-disable-next-line react/jsx-curly-newline
         }
       >
+        {title && (
+          <legend id={`star-rating-${title}`}>
+            <h2>{title}</h2>
+          </legend>
+        )}
         {Array(number)
           .fill(null)
           .map((_, index) => (
             <React.Fragment key={index}>
               <input
                 className={starStyles.hidden}
-                id={`rating-${index}`}
+                id={`star-rating-${index}`}
                 name="rating"
                 type="radio"
                 value={`${index}`}
               />
-              <label htmlFor={`rating-${index}`}>
+              <label htmlFor={`star-rating-${index}`}>
                 <span>
                   {selectedOption >= index ? <Star selected /> : <Star />}
                 </span>

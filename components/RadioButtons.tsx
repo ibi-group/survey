@@ -33,7 +33,7 @@ const RadioButtons = ({
   return (
     <>
       <fieldset
-        aria-labelledby={`${uuid}-legend`}
+        aria-labelledby={`button-rating-${title}`}
         className={styles.container}
         disabled={disabled}
         onChange={(e) => {
@@ -42,14 +42,14 @@ const RadioButtons = ({
         }}
       >
         {title && (
-          <legend id={`${uuid}-legend`}>
+          <legend id={`button-rating-${title}`}>
             <h2>{title}</h2>
           </legend>
         )}
         {options?.map((option, index) => (
           <label htmlFor={`${uuid}-${index}`} key={index}>
             <input
-              aria-labelledby={option}
+              aria-labelledby={`${option}-label`}
               className={styles.button}
               defaultChecked={index === selectedOption}
               id={`${uuid}-${index}`}
@@ -57,7 +57,9 @@ const RadioButtons = ({
               type="radio"
               value={index}
             />
-            <span className={styles.label}>{option}</span>
+            <span className={styles.label} id={`${option}-label`}>
+              {option}
+            </span>
           </label>
         ))}
       </fieldset>

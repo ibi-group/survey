@@ -39,9 +39,13 @@ const SatisfactionSlider = ({
 
   return (
     <>
-      <fieldset className={styles.wrapper} disabled={disabled}>
+      <fieldset
+        aria-labelledby={`satisfaction-slider-${title}`}
+        className={styles.wrapper}
+        disabled={disabled}
+      >
         {title && (
-          <legend id={`${title}-legend`}>
+          <legend id={`satisfaction-slider-${title}`}>
             <h2>{title}</h2>
           </legend>
         )}
@@ -49,9 +53,6 @@ const SatisfactionSlider = ({
         <input aria-hidden="true" name={title} type="hidden" value={number} />
         <input
           aria-label={title}
-          aria-valuemax={max}
-          aria-valuemin={min}
-          aria-valuenow={number}
           max={max}
           min={min}
           name={title}
@@ -60,7 +61,7 @@ const SatisfactionSlider = ({
           type="range"
           value={number}
         />
-        <output>{number}</output>
+        <output className={styles.output}>{number}</output>
       </fieldset>
     </>
   )
