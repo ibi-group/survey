@@ -52,9 +52,9 @@ const Stars = ({
 
   return (
     <>
-      {title && <h3 className="center">{title}</h3>}
+      {title && <h2>{title}</h2>}
       <fieldset
-        className={`${styles.container} ${starStyles.container}`}
+        className={starStyles.container}
         onChange={
           (e) =>
             updateSelectedOption(parseInt((e.target as HTMLInputElement).value))

@@ -31,9 +31,9 @@ const TextResponse = ({
   return (
     <>
       {title && (
-        <h3>
+        <h2 className={styles.alignLeft}>
           <label htmlFor={title}>{title}</label>
-        </h3>
+        </h2>
       )}
       <textarea
         className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}

@@ -70,7 +70,7 @@ i18n:
       next: "Next 〉"
       prev: "〈 Previous"
       completion: "Thanks!"
-      completionSecondary: "Your response has been submitted."
+      completionSubtitle: "Your response has been submitted."
     alert:
       noConnection: "Disconnected from the internet."
     TextResponse:
@@ -80,7 +80,7 @@ i18n:
       next: "Suivant"
       prev: "Précédent"
       completion: "Votre réponse a été reçue."
-      completionSecondary: "This is French."
+      completionSubtitle: "This is French."
     TextResponse:
       enterText: "Entrez du texte..."
     alert:
@@ -90,9 +90,12 @@ i18n:
       next: "Weiter"
       prev: "Zurück"
       completion: "Danke! Deine Antworten wurden gespeichert"
-      completionSecondary: "Sie lesen Deutsch"
+      completionSubtitle: "Sie lesen Deutsch"
     TextResponse:
       enterText: "Text eingeben..."
     alert:
       noConnection: "Internetverbindung verloren."
 
+## Custom background color for application window. If no background color is selected, it will default to white.
+customStyles: 
+    # backgroundColor: '#ffffff'

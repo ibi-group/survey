@@ -12,7 +12,11 @@
 }
 
 .container {
+  border: none;
   justify-content: center;
-  margin-top: 2em;
+  margin-top: 1.25em;
   gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

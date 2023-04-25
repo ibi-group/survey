@@ -49,7 +49,7 @@ const QuestionRenderer = ({
       return (
         <>
           <h1>{title}</h1>
-          <span className="subtitle">{subtitle}</span>
+          <h2>{subtitle}</h2>
         </>
       )
     case 'radio':

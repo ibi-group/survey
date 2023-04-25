@@ -6,13 +6,14 @@
   box-sizing: border-box;
   color: #333;
   font-family: inherit;
-  font-size: 1.5em;
+  font-size: 1.15rem;
   height: 100%;
   max-width: 860px;
   min-height: 300px;
   padding: 1em;
   resize: none;
   transition: all 0.2s ease-in-out;
+  width: 100%;
 }
 .textbox:hover :not(.disabled) {
   background: #dadadadd;
@@ -21,4 +22,11 @@
   background: #fafafadd;
   border: 3px solid #333;
   outline: none;
+}
+
+h2.alignLeft {
+  width: 100%;
+  text-align: left;
+  /* Padding keeps header in line with input text */
+  padding-left: 1rem;
 }
