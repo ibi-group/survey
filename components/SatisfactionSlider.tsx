@@ -50,7 +50,12 @@ const SatisfactionSlider = ({
           </legend>
         )}
         <Smiley percentage={scaledNumber} />
-        <input aria-hidden="true" name={title} type="hidden" value={number} />
+        <input
+          aria-hidden="true"
+          name={title}
+          type="hidden"
+          value={scaledNumber}
+        />
         <input
           aria-label={title}
           max={max}
@@ -61,7 +66,7 @@ const SatisfactionSlider = ({
           type="range"
           value={number}
         />
-        <output className={styles.output}>{number}</output>
+        <output className={styles.invisiblea11ylabel}>{number}</output>
       </fieldset>
     </>
   )
