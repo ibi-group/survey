@@ -11,12 +11,7 @@
   justify-content: center;
 }
 
-.output {
-  display: none;
-  visibility: hidden;
-}
-
-.invisiblea11ylabel {
+.invisibleA11yLabel {
   display: inline-block;
   height: 0;
   overflow: hidden;
