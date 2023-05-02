@@ -33,7 +33,6 @@ const RadioButtons = ({
   return (
     <>
       <fieldset
-        aria-labelledby={`button-rating-${title}`}
         className={styles.container}
         disabled={disabled}
         onChange={(e) => {
@@ -42,7 +41,7 @@ const RadioButtons = ({
         }}
       >
         {title && (
-          <legend id={`button-rating-${title}`}>
+          <legend>
             <h2>{title}</h2>
           </legend>
         )}

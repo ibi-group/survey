@@ -53,7 +53,6 @@ const Stars = ({
   return (
     <>
       <fieldset
-        aria-labelledby={`star-rating-${title}`}
         className={styles.container}
         onChange={
           (e) =>
@@ -62,7 +61,7 @@ const Stars = ({
         }
       >
         {title && (
-          <legend id={`star-rating-${title}`}>
+          <legend>
             <h2>{title}</h2>
           </legend>
         )}

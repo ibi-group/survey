@@ -69,7 +69,6 @@ const SatisfactionSlider = ({
           type="range"
           value={number}
         />
-        <output className={styles.invisibleA11yLabel}>{number}</output>
       </fieldset>
     </>
   )
