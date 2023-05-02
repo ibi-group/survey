@@ -69,6 +69,8 @@ i18n:
       noConnection: "Disconnected from the internet."
     TextResponse:
       enterText: "Enter text..."
+    Slider:
+      valueDescription: "The slider goes goes from a lower rating to a higher rating."
   fr-FR: 
     index: 
       next: "Suivant"
