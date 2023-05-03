@@ -8,7 +8,7 @@
   overflow: scroll;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
-  width: 100%
+  width: 100%;
 }
 .container::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
@@ -22,10 +22,6 @@
   /* on chrome the width/height are fine */
   -moz-appearance: none;
 }
-.button:focus ~ .label {
-  outline: rgb(124, 186, 231) 2px solid;
-  outline-offset: 2px;
-}
 
 .button ~ .label {
   padding: 1em 1.5em;
@@ -33,11 +29,15 @@
   transition: all 0.1s ease-in-out;
   display: block;
   border-radius: 25em;
-  border: 5px solid #33333333;
+  border: 3px solid #33333333;
   text-align: center;
 }
 
 .button:checked ~ .label {
   color: #000;
-  border: 5px solid #333;
+  border: 3px solid #333;
+}
+
+.button:focus ~ .label {
+  border: 3px solid rgb(84, 152, 255);
 }

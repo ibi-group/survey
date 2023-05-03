@@ -12,11 +12,7 @@ const Alert = ({ alertText, show }: AlertProps) => {
     ? styles.wrapper
     : styles.wrapper + ' ' + styles.hidden
   return (
-    <div
-      aria-hidden={!show}
-      className={wrapperStyles}
-      style={{ display: show ? '' : 'none' }}
-    >
+    <div aria-hidden={!show} className={wrapperStyles}>
       {alertText}
     </div>
   )

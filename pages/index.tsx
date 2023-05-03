@@ -98,7 +98,9 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
       {surveyOver && (
         <div className={styles.question}>
           <h1>{t('index.completion')}</h1>
-          <h2>{t('index.completionSubtitle')}</h2>
+          {t('index.completionSubtitle') !== 'index.completionSubtitle' && (
+            <h2>{t('index.completionSubtitle')}</h2>
+          )}
         </div>
       )}
 
