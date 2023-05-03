@@ -47,7 +47,7 @@ const SatisfactionSlider = ({
             <h2>
               <span className={styles.invisibleA11yLabel}>
                 {t('Slider.valueDescription')}
-              </span>
+              </span>{' '}
               {title}
             </h2>
           </legend>
