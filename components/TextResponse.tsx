@@ -30,7 +30,6 @@ const TextResponse = ({
 
   return (
     <>
-
       <fieldset className={styles.container}>
         {title && (
           <legend>

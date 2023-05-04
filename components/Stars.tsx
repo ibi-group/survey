@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import styles from '../styles/RadioButtons.module.css'
 import starStyles from '../styles/Stars.module.css'
 
 export type StarsProps = {
