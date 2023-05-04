@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 import styles from '../styles/SatisfactionSlider.module.css'
@@ -23,6 +24,7 @@ const SatisfactionSlider = ({
   updateCallback
 }: SatisfactionSliderProps) => {
   const [number, updateNumber] = useState(initial || 0)
+  const t = useTranslations()
 
   useEffect(
     () => {
@@ -39,11 +41,26 @@ const SatisfactionSlider = ({
 
   return (
     <>
-      {title && <h3>{title}</h3>}
       <fieldset className={styles.wrapper} disabled={disabled}>
+        {title && (
+          <legend>
+            <h2>
+              <span className={styles.invisibleA11yLabel}>
+                {t('Slider.valueDescription')}
+              </span>{' '}
+              {title}
+            </h2>
+          </legend>
+        )}
         <Smiley percentage={scaledNumber} />
-        <input name={title} type="hidden" value={scaledNumber} />
         <input
+          aria-hidden="true"
+          name={title}
+          type="hidden"
+          value={scaledNumber}
+        />
+        <input
+          aria-label={title}
           max={max}
           min={min}
           name={title}
