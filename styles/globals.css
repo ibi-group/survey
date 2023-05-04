@@ -7,7 +7,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #222;
-  background: rgb(192, 230, 255);
 }
 
 a {
@@ -18,3 +17,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+legend {
+  width: 100%;
+}
+
+h1 {
+  margin: 0;
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+

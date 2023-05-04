@@ -33,7 +33,7 @@ const TextResponse = ({
       <fieldset className={styles.container}>
         {title && (
           <legend>
-            <h2>{title}</h2>
+            <h2 className={styles.alignLeft}>{title}</h2>
           </legend>
         )}
         <textarea

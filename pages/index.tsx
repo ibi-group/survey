@@ -59,7 +59,12 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
   const nextQuestion = () => setActiveQuestion(activeQuestion + 1)
 
   return (
-    <main className={styles.wrapper}>
+    <main
+      className={styles.wrapper}
+      style={{
+        backgroundColor: config?.customStyles?.backgroundColor || '#fff'
+      }}
+    >
       <Alert
         alertText={t('alert.noConnection')}
         show={!connected && (hasDisconnected || !!error)}
@@ -72,7 +77,7 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
             key={index}
             onSubmit={nextQuestion}
             style={{
-              display: index === activeQuestion ? 'inherit' : 'none'
+              display: index === activeQuestion ? '' : 'none'
             }}
           >
             <QuestionRenderer
@@ -93,7 +98,9 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
       {surveyOver && (
         <div className={styles.question}>
           <h1>{t('index.completion')}</h1>
-          <h2>{t('index.completionSecondary')}</h2>
+          {t('index.completionSubtitle') !== 'index.completionSubtitle' && (
+            <h2>{t('index.completionSubtitle')}</h2>
+          )}
         </div>
       )}
 
@@ -128,6 +135,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
         // NOTE: this doesn't use the internationalization library, but achieves the same outcome
         updatedQuestion.title = translations.title
+
+        if (translations?.subtitle) {
+          updatedQuestion.subtitle = translations.subtitle
+        }
 
         if (translations?.options) {
           updatedQuestion = {

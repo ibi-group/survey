@@ -42,7 +42,7 @@ const RadioButtons = ({
       >
         {title && (
           <legend>
-            <h2>{title}</h2>
+            <h2 className={styles.title}>{title}</h2>
           </legend>
         )}
         {options?.map((option, index) => (

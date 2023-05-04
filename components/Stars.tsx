@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import styles from '../styles/RadioButtons.module.css'
 import starStyles from '../styles/Stars.module.css'
 
 export type StarsProps = {
@@ -53,7 +52,7 @@ const Stars = ({
   return (
     <>
       <fieldset
-        className={styles.container}
+        className={starStyles.container}
         onChange={
           (e) =>
             updateSelectedOption(parseInt((e.target as HTMLInputElement).value))
