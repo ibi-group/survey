@@ -52,7 +52,6 @@ const Stars = ({
 
   return (
     <>
-      {title && <h2>{title}</h2>}
       <fieldset
         className={starStyles.container}
         onChange={
@@ -61,18 +60,23 @@ const Stars = ({
           // eslint-disable-next-line react/jsx-curly-newline
         }
       >
+        {title && (
+          <legend>
+            <h2>{title}</h2>
+          </legend>
+        )}
         {Array(number)
           .fill(null)
           .map((_, index) => (
             <React.Fragment key={index}>
               <input
                 className={starStyles.hidden}
-                id={`rating-${index}`}
+                id={`star-rating-${index}`}
                 name="rating"
                 type="radio"
                 value={`${index}`}
               />
-              <label htmlFor={`rating-${index}`}>
+              <label htmlFor={`star-rating-${index}`}>
                 <span>
                   {selectedOption >= index ? <Star selected /> : <Star />}
                 </span>

@@ -30,26 +30,29 @@ const TextResponse = ({
 
   return (
     <>
-      {title && (
-        <h2 className={styles.alignLeft}>
-          <label htmlFor={title}>{title}</label>
-        </h2>
-      )}
-      <textarea
-        className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}
-        disabled={disabled}
-        id={title}
-        name={title}
-        onChange={(e) => updateUserText(e.target.value)}
-        placeholder={placeholder}
-        // Focus the textarea on render
-        ref={(textboxRef) => {
-          if (textboxRef) {
-            textboxRef.focus()
-          }
-        }}
-        value={userText}
-      />
+
+      <fieldset className={styles.container}>
+        {title && (
+          <legend>
+            <h2 className={styles.alignLeft}>{title}</h2>
+          </legend>
+        )}
+        <textarea
+          className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}
+          disabled={disabled}
+          id={title}
+          name={title}
+          onChange={(e) => updateUserText(e.target.value)}
+          placeholder={placeholder}
+          // Focus the textarea on render
+          ref={(textboxRef) => {
+            if (textboxRef) {
+              textboxRef.focus()
+            }
+          }}
+          value={userText}
+        />
+      </fieldset>
     </>
   )
 }

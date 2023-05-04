@@ -29,4 +29,9 @@ h2.alignLeft {
   text-align: left;
   /* Padding keeps header in line with input text */
   padding-left: 1rem;
+
+.container {
+  border: none;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }

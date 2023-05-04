@@ -10,3 +10,10 @@
   gap: 10px;
   justify-content: center;
 }
+
+.invisibleA11yLabel {
+  display: inline-block;
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
