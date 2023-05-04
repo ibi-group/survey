@@ -18,6 +18,10 @@ a {
   box-sizing: border-box;
 }
 
+legend {
+  width: 100%;
+}
+
 h1 {
   margin: 0;
 }
