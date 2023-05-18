@@ -2,37 +2,32 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 
 type Props = {
-  activeQuestion: number
-  connected: boolean
-  lastQuestion: boolean
+  isLastQuestion: boolean
+  nextDisabled: boolean
   nextQuestion: () => void
+  prevDisabled: boolean
   prevQuestion: () => void
-  surveyOver: boolean
 }
 
 const NavButtons = ({
-  activeQuestion,
-  connected,
-  lastQuestion,
+  isLastQuestion,
+  nextDisabled,
   nextQuestion,
-  prevQuestion,
-  surveyOver
+  prevDisabled,
+  prevQuestion
 }: Props) => {
   const t = useTranslations()
   return (
     <>
-      <button
-        disabled={activeQuestion === 0 || !connected}
-        onClick={prevQuestion}
-      >
+      <button disabled={prevDisabled} onClick={prevQuestion}>
         {t('index.prev')}
       </button>
       <button
-        disabled={surveyOver || !connected}
+        disabled={nextDisabled}
         onClick={nextQuestion}
-        type={lastQuestion ? 'submit' : 'button'}
+        type={isLastQuestion ? 'submit' : 'button'}
       >
-        {lastQuestion ? t('index.submitFeedback') : t('index.next')}
+        {isLastQuestion ? t('index.submitFeedback') : t('index.next')}
       </button>
     </>
   )

@@ -53,12 +53,15 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
     return <div>No questions defined</div>
   }
 
-  const lastQuestion = activeQuestion === questions.length - 1
+  const isLastQuestion = activeQuestion === questions.length - 1
   const surveyOver = activeQuestion >= questions.length
 
   // TODO: add a wrapper here to blur focus when changing questions
   const prevQuestion = () => setActiveQuestion(activeQuestion - 1)
   const nextQuestion = () => setActiveQuestion(activeQuestion + 1)
+
+  const prevDisabled = activeQuestion === 0 || !connected
+  const nextDisabled = surveyOver || !connected
 
   return (
     <main
@@ -109,12 +112,11 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
       )}
       <section className={styles.buttons}>
         <NavButtons
-          activeQuestion={activeQuestion}
-          connected={connected}
-          lastQuestion={lastQuestion}
+          isLastQuestion={isLastQuestion}
+          nextDisabled={nextDisabled}
           nextQuestion={nextQuestion}
+          prevDisabled={prevDisabled}
           prevQuestion={prevQuestion}
-          surveyOver={surveyOver}
         />
       </section>
     </main>
