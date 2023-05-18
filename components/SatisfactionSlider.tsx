@@ -44,12 +44,12 @@ const SatisfactionSlider = ({
       <fieldset className={styles.wrapper} disabled={disabled}>
         {title && (
           <legend>
-            <h2>
+            <h1 aria-live="assertive" tabIndex={-1}>
               <span className={styles.invisibleA11yLabel}>
                 {t('Slider.valueDescription')}
               </span>{' '}
               {title}
-            </h2>
+            </h1>
           </legend>
         )}
         <Smiley percentage={scaledNumber} />

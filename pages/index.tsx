@@ -9,6 +9,7 @@ import QuestionRenderer, { Question } from '../components/QuestionRenderer'
 import styles from '../styles/base.module.css'
 import config from '../config.yaml'
 import { Alert } from '../components/Alert'
+import NavButtons from '../components/NavButtons'
 
 const sessionUuid = v4()
 
@@ -52,6 +53,7 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
     return <div>No questions defined</div>
   }
 
+  const lastQuestion = activeQuestion === questions.length - 1
   const surveyOver = activeQuestion >= questions.length
 
   // TODO: add a wrapper here to blur focus when changing questions
@@ -97,23 +99,23 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
 
       {surveyOver && (
         <div className={styles.question}>
-          <h1>{t('index.completion')}</h1>
+          <h1 aria-live="assertive" tabIndex={-1}>
+            {t('index.completion')}
+          </h1>
           {t('index.completionSubtitle') !== 'index.completionSubtitle' && (
             <h2>{t('index.completionSubtitle')}</h2>
           )}
         </div>
       )}
-
       <section className={styles.buttons}>
-        <button
-          disabled={activeQuestion === 0 || !connected}
-          onClick={prevQuestion}
-        >
-          {t('index.prev')}
-        </button>
-        <button disabled={surveyOver || !connected} onClick={nextQuestion}>
-          {t('index.next')}
-        </button>
+        <NavButtons
+          activeQuestion={activeQuestion}
+          connected={connected}
+          lastQuestion={lastQuestion}
+          nextQuestion={nextQuestion}
+          prevQuestion={prevQuestion}
+          surveyOver={surveyOver}
+        />
       </section>
     </main>
   )

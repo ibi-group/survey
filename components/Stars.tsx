@@ -61,7 +61,9 @@ const Stars = ({
       >
         {title && (
           <legend>
-            <h2>{title}</h2>
+            <h1 aria-live="assertive" tabIndex={-1}>
+              {title}
+            </h1>
           </legend>
         )}
         {Array(number)

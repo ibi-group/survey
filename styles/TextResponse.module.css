@@ -24,7 +24,7 @@
   outline: none;
 }
 
-h2.alignLeft {
+h1.alignLeft {
   width: 100%;
   text-align: left;
   /* Padding keeps header in line with input text */

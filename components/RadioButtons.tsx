@@ -42,7 +42,9 @@ const RadioButtons = ({
       >
         {title && (
           <legend>
-            <h2 className={styles.title}>{title}</h2>
+            <h1 aria-live="assertive" tabIndex={-1}>
+              {title}
+            </h1>
           </legend>
         )}
         {options?.map((option, index) => (
