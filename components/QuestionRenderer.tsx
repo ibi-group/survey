@@ -133,8 +133,10 @@ const QuestionRenderer = ({
               aria-live="assertive"
               className={type === 'textarea' ? 'alignLeft' : ''}
               id={`heading-${index}`}
-              ref={(el: HTMLHeadingElement) =>
-                (headingRefs.current[index] = el)}
+              ref={
+                (el: HTMLHeadingElement) => (headingRefs.current[index] = el)
+                // eslint-disable-next-line react/jsx-curly-newline
+              }
               tabIndex={-1}
             >
               {title}
