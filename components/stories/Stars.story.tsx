@@ -14,9 +14,8 @@ export const Default = () => (
 )
 
 export const WithTitle = () => (
-  <Stars
-    number={50}
-    title="How many stars are there in the sky?"
-    updateCallback={action('Option is selected')}
-  />
+  <>
+    <h1>How many stars are there in the sky?</h1>
+    <Stars number={50} updateCallback={action('Option is selected')} />
+  </>
 )

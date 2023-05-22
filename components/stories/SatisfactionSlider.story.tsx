@@ -28,13 +28,16 @@ export const Default = () => (
 )
 
 export const WithTitleAndCustomScale = () => (
-  <Wrapper>
-    <SatisfactionSlider
-      initial={7}
-      max={15}
-      min={-5}
-      title="How much do you like the bus?"
-      updateCallback={action('Slider is updated')}
-    />
-  </Wrapper>
+  <>
+    <h1>How much do you like the bus?</h1>
+    <Wrapper>
+      <SatisfactionSlider
+        initial={7}
+        max={15}
+        min={-5}
+        title="How much do you like the bus?"
+        updateCallback={action('Slider is updated')}
+      />
+    </Wrapper>
+  </>
 )
