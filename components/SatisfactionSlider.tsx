@@ -41,35 +41,27 @@ const SatisfactionSlider = ({
 
   return (
     <>
-      <fieldset className={styles.wrapper} disabled={disabled}>
-        {title && (
-          <legend>
-            <h1 aria-live="assertive" tabIndex={-1}>
-              <span className={styles.invisibleA11yLabel}>
-                {t('Slider.valueDescription')}
-              </span>{' '}
-              {title}
-            </h1>
-          </legend>
-        )}
-        <Smiley percentage={scaledNumber} />
-        <input
-          aria-hidden="true"
-          name={title}
-          type="hidden"
-          value={scaledNumber}
-        />
-        <input
-          aria-label={title}
-          max={max}
-          min={min}
-          name={title}
-          onChange={(e) => updateNumber(parseInt(e.target.value))}
-          step={step}
-          type="range"
-          value={number}
-        />
-      </fieldset>
+      <span className={styles.invisibleA11yLabel}>
+        {t('Slider.valueDescription')}
+      </span>{' '}
+      <Smiley percentage={scaledNumber} />
+      <input
+        aria-hidden="true"
+        disabled={disabled}
+        name={title}
+        type="hidden"
+        value={scaledNumber}
+      />
+      <input
+        aria-label={title}
+        max={max}
+        min={min}
+        name={title}
+        onChange={(e) => updateNumber(parseInt(e.target.value))}
+        step={step}
+        type="range"
+        value={number}
+      />
     </>
   )
 }

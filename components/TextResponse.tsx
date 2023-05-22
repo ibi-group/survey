@@ -30,34 +30,21 @@ const TextResponse = ({
 
   return (
     <>
-      <fieldset className={styles.container}>
-        {title && (
-          <legend>
-            <h1
-              aria-live="assertive"
-              className={styles.alignLeft}
-              tabIndex={-1}
-            >
-              {title}
-            </h1>
-          </legend>
-        )}
-        <textarea
-          className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}
-          disabled={disabled}
-          id={title}
-          name={title}
-          onChange={(e) => updateUserText(e.target.value)}
-          placeholder={placeholder}
-          // Focus the textarea on render
-          ref={(textboxRef) => {
-            if (textboxRef) {
-              textboxRef.focus()
-            }
-          }}
-          value={userText}
-        />
-      </fieldset>
+      <textarea
+        className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}
+        disabled={disabled}
+        id={title}
+        name={title}
+        onChange={(e) => updateUserText(e.target.value)}
+        placeholder={placeholder}
+        // Focus the textarea on render
+        ref={(textboxRef) => {
+          if (textboxRef) {
+            textboxRef.focus()
+          }
+        }}
+        value={userText}
+      />
     </>
   )
 }

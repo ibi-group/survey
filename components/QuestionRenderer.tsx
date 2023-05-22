@@ -1,4 +1,6 @@
+/* eslint-disable complexity */
 import { useTranslations } from 'next-intl'
+import { MutableRefObject } from 'react'
 
 import { RadioButtonProps, RadioButtons } from './RadioButtons'
 import {
@@ -23,10 +25,14 @@ export type Question = {
 // eslint-disable-next-line complexity
 const QuestionRenderer = ({
   disabled,
+  headingRefs,
+  index,
   question,
   updateCallback
 }: {
   disabled: boolean
+  headingRefs: MutableRefObject<HTMLHeadingElement[]>
+  index: number
   question: Question
   updateCallback?: (update: unknown) => void
 }) => {
@@ -41,78 +47,105 @@ const QuestionRenderer = ({
     </>
   )
 
-  // TODO: move title rendering to this component?
-  // Only if there is a way to make it stable across all components
+  // TODO: Reduce complexity
 
-  switch (type) {
-    case 'info':
-      return (
-        <>
-          <h1>{title}</h1>
-          <h2>{subtitle}</h2>
-        </>
-      )
-    case 'radio':
-      if (!('options' in question)) return failure
-      return (
-        <RadioButtons
-          defaultOptionIndex={question.defaultOptionIndex}
-          disabled={disabled}
-          options={question.options}
-          title={title}
-          updateCallback={updateCallback}
-        />
-      )
-    case 'stars':
-      return (
-        <Stars
-          defaultOptionIndex={
-            'defaultOptionIndex' in question
-              ? question.defaultOptionIndex
-              : undefined
-          }
-          number={'number' in question ? question.number : undefined}
-          title={title}
-          updateCallback={updateCallback}
-        />
-      )
-    case 'satisfaction':
-      return (
-        <SatisfactionSlider
-          disabled={disabled}
-          initial={'initial' in question ? question.initial : undefined}
-          max={'max' in question ? question.max : undefined}
-          min={'min' in question ? question.min : undefined}
-          step={'step' in question ? question.step : undefined}
-          title={title}
-          updateCallback={updateCallback}
-        />
-      )
-    case 'textarea':
-      return (
-        <TextResponse
-          disabled={disabled}
-          placeholder={
-            'placeholder' in question
-              ? question.placeholder
-              : t('TextResponse.enterText')
-          }
-          title={title}
-          updateCallback={updateCallback}
-        />
-      )
-    default:
-      console.warn(`Invalid question type ${type}`)
-      return (
-        <>
-          <h1>Error</h1>
-          <p>
-            The configuration contains an invalid question type{' '}
-            <code>{type || 'undefined'}</code>. See console for details.
-          </p>
-        </>
-      )
+  const renderQuestion = (type: string) => {
+    switch (type) {
+      case 'radio':
+        if (!('options' in question)) return failure
+        return (
+          <RadioButtons
+            defaultOptionIndex={question.defaultOptionIndex}
+            disabled={disabled}
+            options={question.options}
+            updateCallback={updateCallback}
+          />
+        )
+      case 'stars':
+        return (
+          <Stars
+            defaultOptionIndex={
+              'defaultOptionIndex' in question
+                ? question.defaultOptionIndex
+                : undefined
+            }
+            number={'number' in question ? question.number : undefined}
+            updateCallback={updateCallback}
+          />
+        )
+      case 'satisfaction':
+        return (
+          <SatisfactionSlider
+            disabled={disabled}
+            initial={'initial' in question ? question.initial : undefined}
+            max={'max' in question ? question.max : undefined}
+            min={'min' in question ? question.min : undefined}
+            step={'step' in question ? question.step : undefined}
+            title={title}
+            updateCallback={updateCallback}
+          />
+        )
+      case 'textarea':
+        return (
+          <TextResponse
+            disabled={disabled}
+            placeholder={
+              'placeholder' in question
+                ? question.placeholder
+                : t('TextResponse.enterText')
+            }
+            title={title}
+            updateCallback={updateCallback}
+          />
+        )
+      default:
+        console.warn(`Invalid question type ${type}`)
+        return (
+          <>
+            <h1>Error</h1>
+            <p>
+              The configuration contains an invalid question type{' '}
+              <code>{type || 'undefined'}</code>. See console for details.
+            </p>
+          </>
+        )
+    }
   }
+  if (type === 'info') {
+    return (
+      <>
+        {title && (
+          <h1 aria-live="assertive" id={`heading-${index}`} tabIndex={-1}>
+            {title}
+          </h1>
+        )}
+        {subtitle && <h2>{subtitle}</h2>}
+      </>
+    )
+  }
+
+  return (
+    <>
+      <fieldset className="container">
+        {title && (
+          <legend>
+            <h1
+              aria-live="assertive"
+              className={type === 'textarea' ? 'alignLeft' : ''}
+              id={`heading-${index}`}
+              ref={(el: HTMLHeadingElement) =>
+                (headingRefs.current[index] = el)}
+              tabIndex={-1}
+            >
+              {title}
+            </h1>
+          </legend>
+        )}
+        {subtitle && <h2>{subtitle}</h2>}
+        {renderQuestion(type)}
+      </fieldset>
+    </>
+  )
 }
 
 export default QuestionRenderer

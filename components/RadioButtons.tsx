@@ -7,14 +7,12 @@ export type RadioButtonProps = {
   defaultOptionIndex?: number
   disabled?: boolean
   options: string[]
-  title?: string
   updateCallback?: (update: number) => void
 }
 const RadioButtons = ({
   defaultOptionIndex = -1,
   disabled = false,
   options,
-  title,
   updateCallback
 }: RadioButtonProps) => {
   const [selectedOption, updateSelectedOption] = useState(defaultOptionIndex)
@@ -31,40 +29,31 @@ const RadioButtons = ({
   const uuid = v4()
 
   return (
-    <>
-      <fieldset
-        className={styles.container}
-        disabled={disabled}
-        onChange={(e) => {
-          const selectedValue = parseInt((e.target as HTMLInputElement).value)
-          updateSelectedOption(selectedValue)
-        }}
-      >
-        {title && (
-          <legend>
-            <h1 aria-live="assertive" tabIndex={-1}>
-              {title}
-            </h1>
-          </legend>
-        )}
-        {options?.map((option, index) => (
-          <label htmlFor={`${uuid}-${index}`} key={index}>
-            <input
-              aria-labelledby={`${option}-label`}
-              className={styles.button}
-              defaultChecked={index === selectedOption}
-              id={`${uuid}-${index}`}
-              name={uuid}
-              type="radio"
-              value={index}
-            />
-            <span className={styles.label} id={`${option}-label`}>
-              {option}
-            </span>
-          </label>
-        ))}
-      </fieldset>
-    </>
+    <div className={styles.container}>
+      {options?.map((option, index) => (
+        <label htmlFor={`${uuid}-${index}`} key={index}>
+          <input
+            aria-labelledby={`${option}-label`}
+            className={styles.button}
+            defaultChecked={index === selectedOption}
+            disabled={disabled}
+            id={`${uuid}-${index}`}
+            name={uuid}
+            onChange={(e) => {
+              const selectedValue = parseInt(
+                (e.target as HTMLInputElement).value
+              )
+              updateSelectedOption(selectedValue)
+            }}
+            type="radio"
+            value={index}
+          />
+          <span className={styles.label} id={`${option}-label`}>
+            {option}
+          </span>
+        </label>
+      ))}
+    </div>
   )
 }
 export { RadioButtons }
