@@ -43,17 +43,17 @@ const SatisfactionSlider = ({
     <>
       <span className={styles.invisibleA11yLabel}>
         {t('Slider.valueDescription')}
-      </span>{' '}
+      </span>
       <Smiley percentage={scaledNumber} />
       <input
         aria-hidden="true"
-        disabled={disabled}
         name={title}
         type="hidden"
         value={scaledNumber}
       />
       <input
         aria-label={title}
+        disabled={disabled}
         max={max}
         min={min}
         name={title}

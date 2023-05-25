@@ -1,6 +1,5 @@
 /* eslint-disable complexity */
 import { useTranslations } from 'next-intl'
-import { MutableRefObject } from 'react'
 
 import { RadioButtonProps, RadioButtons } from './RadioButtons'
 import {
@@ -25,13 +24,11 @@ export type Question = {
 // eslint-disable-next-line complexity
 const QuestionRenderer = ({
   disabled,
-  headingRefs,
   index,
   question,
   updateCallback
 }: {
   disabled: boolean
-  headingRefs: MutableRefObject<HTMLHeadingElement[]>
   index: number
   question: Question
   updateCallback?: (update: unknown) => void
@@ -125,28 +122,22 @@ const QuestionRenderer = ({
   }
 
   return (
-    <>
-      <fieldset className="container">
-        {title && (
-          <legend>
-            <h1
-              aria-live="assertive"
-              className={type === 'textarea' ? 'alignLeft' : ''}
-              id={`heading-${index}`}
-              ref={
-                (el: HTMLHeadingElement) => (headingRefs.current[index] = el)
-                // eslint-disable-next-line react/jsx-curly-newline
-              }
-              tabIndex={-1}
-            >
-              {title}
-            </h1>
-          </legend>
-        )}
-        {subtitle && <h2>{subtitle}</h2>}
-        {renderQuestion(type)}
-      </fieldset>
-    </>
+    <fieldset className="container">
+      {title && (
+        <legend>
+          <h1
+            aria-live="assertive"
+            className={type === 'textarea' ? 'alignLeft' : ''}
+            id={`heading-${index}`}
+            tabIndex={-1}
+          >
+            {title}
+          </h1>
+        </legend>
+      )}
+      {subtitle && <h2>{subtitle}</h2>}
+      {renderQuestion(type)}
+    </fieldset>
   )
 }
 

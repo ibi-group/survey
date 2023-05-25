@@ -1,5 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { v4 } from 'uuid'
 import { useTranslations } from 'next-intl'
 import { useSocket, useSocketEvent } from 'socket.io-react-hook'
@@ -25,7 +25,6 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
       'SOCKET_SERVER_URL env variable not set. There is nowhere to send survey results!'
     )
   }
-  const headingRefs = useRef<Array<HTMLHeadingElement>>([])
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
@@ -48,11 +47,6 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
       value: update
     })
   }
-
-  // On each question render, set focus to h1 for AT
-  useEffect(() => {
-    headingRefs.current[activeQuestion]?.focus()
-  }, [activeQuestion])
 
   if (!questions || questions.length === 0) {
     return <div>No questions defined</div>
@@ -91,7 +85,6 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
           >
             <QuestionRenderer
               disabled={!connected}
-              headingRefs={headingRefs}
               index={index}
               question={question}
               updateCallback={(update: unknown) => {
