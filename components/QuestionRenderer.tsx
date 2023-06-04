@@ -124,7 +124,7 @@ const QuestionRenderer = ({
   return (
     <fieldset className="container">
       {title && (
-        <legend>
+        <>
           <h1
             aria-live="assertive"
             className={type === 'textarea' ? 'alignLeft' : ''}
@@ -133,7 +133,8 @@ const QuestionRenderer = ({
           >
             {title}
           </h1>
-        </legend>
+          <legend className="invisibleA11yLabel">{title}</legend>
+        </>
       )}
       {subtitle && <h2>{subtitle}</h2>}
       {renderQuestion(type)}

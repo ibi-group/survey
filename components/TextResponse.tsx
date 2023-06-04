@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 // @ts-expect-error This package is typescripted, but not uploaded to npm correctly
 import { useDebounce } from 'use-lodash-debounce'
 
@@ -28,6 +28,8 @@ const TextResponse = ({
     [debouncedUserText]
   )
 
+  const onTextChange = useCallback((e) => updateUserText(e.target.value), [])
+
   return (
     <>
       <textarea
@@ -35,7 +37,7 @@ const TextResponse = ({
         disabled={disabled}
         id={title}
         name={title}
-        onChange={(e) => updateUserText(e.target.value)}
+        onChange={onTextChange}
         placeholder={placeholder}
         // Focus the textarea on render
         ref={(textboxRef) => {

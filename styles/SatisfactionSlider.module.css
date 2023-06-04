@@ -1,10 +1,3 @@
 .large {
   font-size: 128px;
 }
-
-.invisibleA11yLabel {
-  display: inline-block;
-  height: 0;
-  overflow: hidden;
-  width: 0;
-}

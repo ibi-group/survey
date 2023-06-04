@@ -46,6 +46,13 @@ h1.alignLeft {
   width: 100%;
 }
 
+.invisibleA11yLabel {
+  display: inline-block;
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
 .container {
   align-items: center;
   border: none;

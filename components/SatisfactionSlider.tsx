@@ -1,7 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
-
-import styles from '../styles/SatisfactionSlider.module.css'
+import { useCallback, useEffect, useState } from 'react'
 
 import Smiley from './Smiley'
 
@@ -39,25 +37,29 @@ const SatisfactionSlider = ({
 
   const scaledNumber = (number - min) / (max - min)
 
+  const onSliderChange = useCallback(
+    (e) => updateNumber(parseInt(e.target.value)),
+    []
+  )
+
   return (
     <>
-      <span className={styles.invisibleA11yLabel}>
-        {t('Slider.valueDescription')}
-      </span>
+      <span className="invisibleA11yLabel">{t('Slider.valueDescription')}</span>
       <Smiley percentage={scaledNumber} />
-      <input
-        aria-hidden="true"
-        name={title}
-        type="hidden"
-        value={scaledNumber}
-      />
+      <input name={title} type="hidden" value={scaledNumber} />
       <input
         aria-label={title}
         disabled={disabled}
         max={max}
         min={min}
         name={title}
-        onChange={(e) => updateNumber(parseInt(e.target.value))}
+        onChange={onSliderChange}
+        // Set focus to input on render
+        ref={(sliderRef) => {
+          if (sliderRef) {
+            sliderRef.focus()
+          }
+        }}
         step={step}
         type="range"
         value={number}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import starStyles from '../styles/Stars.module.css'
 
@@ -48,6 +48,9 @@ const Stars = ({
     [selectedOption]
   )
 
+  const onStarChange = useCallback((e) => {
+    return updateSelectedOption(parseInt((e.target as HTMLInputElement).value))
+  }, [])
   return (
     <div className={starStyles.container}>
       {Array(number)
@@ -55,17 +58,23 @@ const Stars = ({
         .map((_, index) => (
           <React.Fragment key={index}>
             <input
-              className={starStyles.hidden}
+              className={` ${starStyles.input} invisibleA11yLabel`}
               id={`star-rating-${index}`}
               name="rating"
-              onChange={
-                (e) => {
-                  return updateSelectedOption(
-                    parseInt((e.target as HTMLInputElement).value)
-                  )
+              onChange={onStarChange}
+              ref={(starRef) => {
+                // If there is no default selected option, set focus to first radio button
+                if (starRef && index === 0 && selectedOption < 0) {
+                  starRef.focus()
+                  // If there is a default selected option, set focus to that option
+                } else if (
+                  starRef &&
+                  selectedOption === defaultOptionIndex &&
+                  index === selectedOption
+                ) {
+                  starRef.focus()
                 }
-                // eslint-disable-next-line react/jsx-curly-newline
-              }
+              }}
               type="radio"
               value={`${index}`}
             />
