@@ -32,11 +32,16 @@ h3 {
   text-align: center;
 }
 
-fieldset h1,
+h1,
 h2 {
   font-size: 1.5em;
   font-weight: 400;
   margin-bottom: 0.5em;
+}
+
+h1.info {
+  font-size: 2em;
+  font-weight: 700;
 }
 
 h1.alignLeft {

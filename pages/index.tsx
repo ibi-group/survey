@@ -101,7 +101,7 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
 
       {surveyOver && (
         <div className={styles.question}>
-          <h1 aria-live="assertive" tabIndex={-1}>
+          <h1 aria-live="assertive" className="info" tabIndex={-1}>
             {t('index.completion')}
           </h1>
           {t('index.completionSubtitle') !== 'index.completionSubtitle' && (

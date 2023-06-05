@@ -112,7 +112,12 @@ const QuestionRenderer = ({
     return (
       <>
         {title && (
-          <h1 aria-live="assertive" id={`heading-${index}`} tabIndex={-1}>
+          <h1
+            aria-live="assertive"
+            className="info"
+            id={`heading-${index}`}
+            tabIndex={-1}
+          >
             {title}
           </h1>
         )}
@@ -122,23 +127,23 @@ const QuestionRenderer = ({
   }
 
   return (
-    <fieldset className="container">
+    <>
       {title && (
-        <>
-          <h1
-            aria-live="assertive"
-            className={type === 'textarea' ? 'alignLeft' : ''}
-            id={`heading-${index}`}
-            tabIndex={-1}
-          >
-            {title}
-          </h1>
-          <legend className="invisibleA11yLabel">{title}</legend>
-        </>
+        <h1
+          aria-live="assertive"
+          className={type === 'textarea' ? 'alignLeft' : ''}
+          id={`heading-${index}`}
+          tabIndex={-1}
+        >
+          {title}
+        </h1>
       )}
-      {subtitle && <h2>{subtitle}</h2>}
-      {renderQuestion(type)}
-    </fieldset>
+      <fieldset className="container">
+        {title && <legend className="invisibleA11yLabel">{title}</legend>}
+        {subtitle && <h2>{subtitle}</h2>}
+        {renderQuestion(type)}
+      </fieldset>
+    </>
   )
 }
 
