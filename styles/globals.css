@@ -26,12 +26,50 @@ h1 {
   margin: 0;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-align: center;
 }
 
+h1,
 h2 {
   font-size: 1.5em;
   font-weight: 400;
+  margin-bottom: 0.5em;
 }
 
+h1.info {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+h1.alignLeft {
+  /* Padding keeps header in line with input text */
+  padding-left: 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+.invisibleA11yLabel {
+  display: inline-block;
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+.container {
+  align-items: center;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  overflow: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}

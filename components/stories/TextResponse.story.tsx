@@ -32,11 +32,14 @@ export const Default = () => (
 
 export const WithTitle = () => (
   <Wrapper>
-    <TextResponse
-      placeholder="Pizza is delicious"
-      title="Describe your favorite food here"
-      updateCallback={action('Text is updated')}
-    />
+    <>
+      <h1>How much do you like the bus?</h1>
+      <TextResponse
+        placeholder="Pizza is delicious"
+        title="Describe your favorite food here"
+        updateCallback={action('Text is updated')}
+      />
+    </>
   </Wrapper>
 )
 

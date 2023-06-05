@@ -69,6 +69,7 @@ i18n:
     index: 
       next: "Next 〉"
       prev: "〈 Previous"
+      submitFeedback: "Submit"
       completion: "Thanks!"
       completionSubtitle: "Your response has been submitted."
     alert:

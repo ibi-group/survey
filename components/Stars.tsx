@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import starStyles from '../styles/Stars.module.css'
 
 export type StarsProps = {
   defaultOptionIndex?: number
   number?: number
-  title?: string
   updateCallback?: (update: number) => void
 }
 
-const Star = ({ selected }: { selected?: boolean }) => {
+const Star = ({ index, selected }: { index?: string; selected?: boolean }) => {
   let fill = 'rgba(30, 30, 30, 0.3)'
   if (selected) {
     fill = 'rgba(255, 214, 0, 0.8)'
@@ -17,6 +16,7 @@ const Star = ({ selected }: { selected?: boolean }) => {
 
   return (
     <svg
+      aria-label={index ? `${index + 1} stars` : ''}
       className={starStyles.star}
       height="55"
       width="54"
@@ -35,7 +35,6 @@ const Star = ({ selected }: { selected?: boolean }) => {
 const Stars = ({
   defaultOptionIndex = -1,
   number = 5,
-  title,
   updateCallback
 }: StarsProps) => {
   const [selectedOption, updateSelectedOption] = useState(defaultOptionIndex)
@@ -49,41 +48,48 @@ const Stars = ({
     [selectedOption]
   )
 
+  const onStarChange = useCallback((e) => {
+    return updateSelectedOption(parseInt((e.target as HTMLInputElement).value))
+  }, [])
   return (
-    <>
-      <fieldset
-        className={starStyles.container}
-        onChange={
-          (e) =>
-            updateSelectedOption(parseInt((e.target as HTMLInputElement).value))
-          // eslint-disable-next-line react/jsx-curly-newline
-        }
-      >
-        {title && (
-          <legend>
-            <h2>{title}</h2>
-          </legend>
-        )}
-        {Array(number)
-          .fill(null)
-          .map((_, index) => (
-            <React.Fragment key={index}>
-              <input
-                className={starStyles.hidden}
-                id={`star-rating-${index}`}
-                name="rating"
-                type="radio"
-                value={`${index}`}
-              />
-              <label htmlFor={`star-rating-${index}`}>
-                <span>
-                  {selectedOption >= index ? <Star selected /> : <Star />}
-                </span>
-              </label>
-            </React.Fragment>
-          ))}
-      </fieldset>
-    </>
+    <div className={starStyles.container}>
+      {Array(number)
+        .fill(null)
+        .map((_, index) => (
+          <React.Fragment key={index}>
+            <input
+              className={` ${starStyles.input} invisibleA11yLabel`}
+              id={`star-rating-${index}`}
+              name="rating"
+              onChange={onStarChange}
+              ref={(starRef) => {
+                // If there is no default selected option, set focus to first radio button
+                if (starRef && index === 0 && selectedOption < 0) {
+                  starRef.focus()
+                  // If there is a default selected option, set focus to that option
+                } else if (
+                  starRef &&
+                  selectedOption === defaultOptionIndex &&
+                  index === selectedOption
+                ) {
+                  starRef.focus()
+                }
+              }}
+              type="radio"
+              value={`${index}`}
+            />
+            <label htmlFor={`star-rating-${index}`}>
+              <span>
+                {selectedOption >= index ? (
+                  <Star index={`${index}`} selected />
+                ) : (
+                  <Star />
+                )}
+              </span>
+            </label>
+          </React.Fragment>
+        ))}
+    </div>
   )
 }
 export { Stars }

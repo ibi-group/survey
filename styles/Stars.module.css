@@ -6,16 +6,18 @@
   height: 45px;
   width: 45px;
   overflow: unset;
+  margin-right: 15px;
 }
 .star:hover {
   opacity: 0.5;
 }
 
+.input:focus + label path {
+  outline: 1px solid blue;
+}
+
 .container {
-  border: none;
-  justify-content: center;
   margin-top: 1.25em;
-  gap: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

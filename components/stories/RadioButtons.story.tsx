@@ -17,10 +17,12 @@ export const Default = () => (
 )
 
 export const WithTitle = () => (
-  <RadioButtons
-    defaultOptionIndex={2}
-    options={['one', 'two', 'three', 'four', 'five']}
-    title="Pick a number"
-    updateCallback={action('Option is selected')}
-  />
+  <>
+    <h1>How many stars are there in the sky?</h1>
+    <RadioButtons
+      defaultOptionIndex={2}
+      options={['one', 'two', 'three', 'four', 'five']}
+      updateCallback={action('Option is selected')}
+    />
+  </>
 )

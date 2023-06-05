@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 // @ts-expect-error This package is typescripted, but not uploaded to npm correctly
 import { useDebounce } from 'use-lodash-debounce'
 
@@ -28,30 +28,25 @@ const TextResponse = ({
     [debouncedUserText]
   )
 
+  const onTextChange = useCallback((e) => updateUserText(e.target.value), [])
+
   return (
     <>
-      <fieldset className={styles.container}>
-        {title && (
-          <legend>
-            <h2 className={styles.alignLeft}>{title}</h2>
-          </legend>
-        )}
-        <textarea
-          className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}
-          disabled={disabled}
-          id={title}
-          name={title}
-          onChange={(e) => updateUserText(e.target.value)}
-          placeholder={placeholder}
-          // Focus the textarea on render
-          ref={(textboxRef) => {
-            if (textboxRef) {
-              textboxRef.focus()
-            }
-          }}
-          value={userText}
-        />
-      </fieldset>
+      <textarea
+        className={`${styles.textbox} ${disabled ? 'disabled' : ''}`}
+        disabled={disabled}
+        id={title}
+        name={title}
+        onChange={onTextChange}
+        placeholder={placeholder}
+        // Focus the textarea on render
+        ref={(textboxRef) => {
+          if (textboxRef) {
+            textboxRef.focus()
+          }
+        }}
+        value={userText}
+      />
     </>
   )
 }

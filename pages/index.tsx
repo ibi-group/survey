@@ -9,6 +9,7 @@ import QuestionRenderer, { Question } from '../components/QuestionRenderer'
 import styles from '../styles/base.module.css'
 import config from '../config.yaml'
 import { Alert } from '../components/Alert'
+import NavButtons from '../components/NavButtons'
 
 const sessionUuid = v4()
 
@@ -24,7 +25,6 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
       'SOCKET_SERVER_URL env variable not set. There is nowhere to send survey results!'
     )
   }
-
   const [activeQuestion, setActiveQuestion] = useState(0)
   const t = useTranslations()
 
@@ -52,11 +52,14 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
     return <div>No questions defined</div>
   }
 
+  const isLastQuestion = activeQuestion === questions.length - 1
   const surveyOver = activeQuestion >= questions.length
 
-  // TODO: add a wrapper here to blur focus when changing questions
   const prevQuestion = () => setActiveQuestion(activeQuestion - 1)
   const nextQuestion = () => setActiveQuestion(activeQuestion + 1)
+
+  const prevDisabled = activeQuestion === 0 || !connected
+  const nextDisabled = surveyOver || !connected
 
   return (
     <main
@@ -82,6 +85,7 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
           >
             <QuestionRenderer
               disabled={!connected}
+              index={index}
               question={question}
               updateCallback={(update: unknown) => {
                 return activeQuestion === index
@@ -97,23 +101,22 @@ const Home: NextPage = ({ questions, socketServerUrl }: Props) => {
 
       {surveyOver && (
         <div className={styles.question}>
-          <h1>{t('index.completion')}</h1>
+          <h1 aria-live="assertive" className="info" tabIndex={-1}>
+            {t('index.completion')}
+          </h1>
           {t('index.completionSubtitle') !== 'index.completionSubtitle' && (
             <h2>{t('index.completionSubtitle')}</h2>
           )}
         </div>
       )}
-
       <section className={styles.buttons}>
-        <button
-          disabled={activeQuestion === 0 || !connected}
-          onClick={prevQuestion}
-        >
-          {t('index.prev')}
-        </button>
-        <button disabled={surveyOver || !connected} onClick={nextQuestion}>
-          {t('index.next')}
-        </button>
+        <NavButtons
+          isLastQuestion={isLastQuestion}
+          nextDisabled={nextDisabled}
+          nextQuestion={nextQuestion}
+          prevDisabled={prevDisabled}
+          prevQuestion={prevQuestion}
+        />
       </section>
     </main>
   )

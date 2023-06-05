@@ -23,16 +23,3 @@
   border: 3px solid #333;
   outline: none;
 }
-
-h2.alignLeft {
-  width: 100%;
-  text-align: left;
-  /* Padding keeps header in line with input text */
-  padding-left: 1rem;
-}
-
-.container {
-  border: none;
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
-}
