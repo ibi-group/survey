@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const fs = require('fs')
+const { Readable } = require('stream')
+const { finished } = require('stream/promises')
 
 const withYaml = require('next-plugin-yaml')
 
@@ -20,7 +22,7 @@ module.exports = async () => {
     )
     const downloadedConfig = await fetch(CONFIG_YML_URL)
     const fileStream = fs.createWriteStream('./config.yaml')
-    await downloadedConfig.body.pipe(fileStream)
+    await finished(Readable.fromWeb(downloadedConfig.body).pipe(fileStream))
     console.log(`Downloaded config.yaml`)
   }
   return withYaml(nextConfig)
