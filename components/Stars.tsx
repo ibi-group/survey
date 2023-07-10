@@ -16,7 +16,7 @@ const Star = ({ index, selected }: { index?: string; selected?: boolean }) => {
 
   return (
     <svg
-      aria-label={index ? `${index + 1} stars` : ''}
+      aria-label={index ? `${Number(index) + 1} stars` : ''}
       className={starStyles.star}
       height="55"
       width="54"
