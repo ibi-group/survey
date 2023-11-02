@@ -9,7 +9,7 @@
   margin-right: 15px;
 }
 .star:hover {
-  opacity: 0.5;
+  cursor: pointer;
 }
 
 .input:focus + label path {

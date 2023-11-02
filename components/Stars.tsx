@@ -8,17 +8,30 @@ export type StarsProps = {
   updateCallback?: (update: number) => void
 }
 
-const Star = ({ index, selected }: { index?: string; selected?: boolean }) => {
-  let fill = 'rgba(30, 30, 30, 0.3)'
-  if (selected) {
-    fill = 'rgba(255, 214, 0, 0.8)'
-  }
+const Star = ({
+  hovered,
+  index,
+  onStarHover,
+  onStarLeave,
+  selected
+}: {
+  hovered?: boolean
+  index?: string
+  onStarHover: () => void
+  onStarLeave: () => void
+  selected?: boolean
+}) => {
+  // Fill with yellow if the star is selected or hovered, otherwise fill is gray
+  const fill =
+    selected || hovered ? 'rgba(255, 214, 0, 0.8)' : 'rgba(30, 30, 30, 0.3'
 
   return (
     <svg
       aria-label={index ? `${Number(index) + 1} stars` : ''}
       className={starStyles.star}
       height="55"
+      onMouseEnter={onStarHover}
+      onMouseLeave={onStarLeave}
       width="54"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -38,6 +51,7 @@ const Stars = ({
   updateCallback
 }: StarsProps) => {
   const [selectedOption, updateSelectedOption] = useState(defaultOptionIndex)
+  const [hoveredStar, setHoveredStar] = useState<number | null>(null)
 
   useEffect(
     () => {
@@ -51,6 +65,15 @@ const Stars = ({
   const onStarChange = useCallback((e) => {
     return updateSelectedOption(parseInt((e.target as HTMLInputElement).value))
   }, [])
+
+  const handleStarHover = (index: number) => {
+    setHoveredStar(index)
+  }
+
+  const handleStarLeave = () => {
+    setHoveredStar(null)
+  }
+
   return (
     <div className={starStyles.container}>
       {Array(number)
@@ -80,11 +103,13 @@ const Stars = ({
             />
             <label htmlFor={`star-rating-${index}`}>
               <span>
-                {selectedOption >= index ? (
-                  <Star index={`${index}`} selected />
-                ) : (
-                  <Star />
-                )}
+                <Star
+                  hovered={hoveredStar !== null && index <= hoveredStar}
+                  index={`${index}`}
+                  onStarHover={() => handleStarHover(index)}
+                  onStarLeave={handleStarLeave}
+                  selected={selectedOption >= index}
+                />
               </span>
             </label>
           </React.Fragment>
