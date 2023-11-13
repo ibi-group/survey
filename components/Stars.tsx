@@ -9,17 +9,15 @@ export type StarsProps = {
 }
 
 const Star = ({ index, selected }: { index?: string; selected?: boolean }) => {
-  const fill = selected ? 'rgba(255, 214, 0, 0.8)' : 'rgba(30, 30, 30, 0.3)'
-
   return (
     <svg
       aria-label={index ? `${Number(index) + 1} stars` : ''}
-      className={starStyles.star}
+      className={`${starStyles.star} ${selected ? starStyles.selected : ''}`}
       height="55"
       width="54"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M27,2.5 43,52.5 1,21.5H53.5L11,52.5" fill={fill} />
+      <path d="M27,2.5 43,52.5 1,21.5H53.5L11,52.5" fill="currentColor" />
     </svg>
   )
 }

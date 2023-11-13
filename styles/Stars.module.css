@@ -7,11 +7,15 @@
   width: 45px;
   overflow: unset;
   margin-right: 15px;
+  color: gray;
 }
-.star:hover path {
+.star:hover {
   cursor: pointer;
-  fill: #ffd600;
-  opacity: 0.8;
+  color: #a98d00;
+}
+
+.selected {
+  color: #ddb802;
 }
 
 .input:focus + label path {
