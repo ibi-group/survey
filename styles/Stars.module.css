@@ -11,11 +11,14 @@
 }
 .star:hover {
   cursor: pointer;
-  color: #a98d00;
+  filter: brightness(1.5);
 }
 
 .selected {
   color: #ddb802;
+}
+.selected:hover {
+  filter: brightness(0.7);
 }
 
 .input:focus + label path {
