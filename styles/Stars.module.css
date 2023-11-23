@@ -8,7 +8,7 @@
   overflow: unset;
   margin-right: 15px;
   color: #8C8C8C;
-  transition: color 0.15s ease-in-out;
+  transition: color 0.1s ease-in-out;
 }
 .star:hover {
   cursor: pointer;
