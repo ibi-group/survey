@@ -9,25 +9,15 @@ export type StarsProps = {
 }
 
 const Star = ({ index, selected }: { index?: string; selected?: boolean }) => {
-  let fill = 'rgba(30, 30, 30, 0.3)'
-  if (selected) {
-    fill = 'rgba(255, 214, 0, 0.8)'
-  }
-
   return (
     <svg
       aria-label={index ? `${Number(index) + 1} stars` : ''}
-      className={starStyles.star}
+      className={`${starStyles.star} ${selected ? starStyles.selected : ''}`}
       height="55"
       width="54"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M27,2.5 43,52.5 1,21.5H53.5L11,52.5"
-        style={{
-          fill
-        }}
-      />
+      <path d="M27,2.5 43,52.5 1,21.5H53.5L11,52.5" fill="currentColor" />
     </svg>
   )
 }
@@ -51,6 +41,7 @@ const Stars = ({
   const onStarChange = useCallback((e) => {
     return updateSelectedOption(parseInt((e.target as HTMLInputElement).value))
   }, [])
+
   return (
     <div className={starStyles.container}>
       {Array(number)
@@ -80,11 +71,7 @@ const Stars = ({
             />
             <label htmlFor={`star-rating-${index}`}>
               <span>
-                {selectedOption >= index ? (
-                  <Star index={`${index}`} selected />
-                ) : (
-                  <Star />
-                )}
+                <Star index={`${index}`} selected={selectedOption >= index} />
               </span>
             </label>
           </React.Fragment>

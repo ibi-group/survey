@@ -7,9 +7,19 @@
   width: 45px;
   overflow: unset;
   margin-right: 15px;
+  color: #8C8C8C;
+  transition: color 0.1s ease-in-out;
 }
 .star:hover {
-  opacity: 0.5;
+  cursor: pointer;
+  color: #666666
+}
+
+.selected {
+  color: #ffda1f;
+}
+.selected:hover {
+  color: #ffb300;
 }
 
 .input:focus + label path {
