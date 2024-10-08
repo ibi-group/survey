@@ -1,0 +1,21 @@
+.container {
+  font-size: 25px;
+  width: 100%;
+}
+
+.container label {
+  display: grid;
+  align-items: baseline;
+  grid-template-columns: 25px 1fr;
+  grid-gap: 1ch;
+  padding-bottom: 0.33333ch;
+}
+.container label input {
+  height: 25px;
+  width: 25px;
+}
+
+.button ~ .label {
+  color: #333;
+  transition: all 0.1s ease-in-out;
+}
