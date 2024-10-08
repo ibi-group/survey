@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 
 import styles from '../styles/Checkboxes.module.css'
@@ -28,7 +28,7 @@ const Checkboxes = ({
 
   const uuid = v4()
 
-  const onSelectionChange = (e) => {
+  const onSelectionChange = (e: ChangeEvent<HTMLInputElement>) => {
     const index = parseInt((e.target as HTMLInputElement).value)
     const clonedSelectedOptions = Array.from(selectedOptions)
     clonedSelectedOptions[index] = !clonedSelectedOptions[index]
