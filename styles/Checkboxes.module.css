@@ -1,11 +1,10 @@
 .container {
   font-size: 25px;
-  width: 100%;
 }
 
 .container label {
   display: grid;
-  align-items: baseline;
+  align-items: center;
   grid-template-columns: 25px 1fr;
   grid-gap: 1ch;
   padding-bottom: 0.33333ch;
