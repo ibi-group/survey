@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 import { useTranslations } from 'next-intl'
 
+import { Checkboxes } from './Checkboxes'
 import { RadioButtonProps, RadioButtons } from './RadioButtons'
 import {
   SatisfactionSlider,
@@ -48,6 +49,15 @@ const QuestionRenderer = ({
 
   const renderQuestion = (type: string) => {
     switch (type) {
+      case 'checkbox':
+        if (!('options' in question)) return failure
+        return (
+          <Checkboxes
+            disabled={disabled}
+            options={question.options}
+            updateCallback={updateCallback}
+          />
+        )
       case 'radio':
         if (!('options' in question)) return failure
         return (

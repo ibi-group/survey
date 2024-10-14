@@ -17,6 +17,14 @@ questions:
     # This is an example of a non-internationalized question
     title: "What do you think of this survey?"
   - 
+    type: "checkbox"
+    title: "Which emotions does this survey bring out within you?"
+    options:
+      - "Joy"
+      - "Delight"
+      - "Ecstasy"
+      - "Happy"
+  - 
     # This question type provides a slider and a corresponding emoji-based
     # satisfaction display
     type: "satisfaction"
